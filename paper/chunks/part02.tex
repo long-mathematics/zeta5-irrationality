@@ -1,0 +1,300 @@
+compact subintervals of $(0,\infty)$ gives $w(y)=y^5 f^{(4)}(y)/12$.
+An elementary differentiation identity is
+\[
+ \frac{d^4}{dy^4}\frac{y^5}{y^2+a^2}
+       =24a^4\operatorname{Im}(a-iy)^{-5}.
+\]
+Integrate by parts four times first on $[\varepsilon,R]$. At zero the
+boundary term involving the $k$th derivative of $y^5/(y^2+a^2)$ and
+the $(3-k)$th derivative of $f$, for $0\le k\le3$, is
+$O(y^{5-k}y^{-4+k})=O(y)$. At infinity it tends to zero exponentially.
+The differentiated integrands are absolutely integrable, so passage to
+the endpoints is justified. Hermite's integral formula at $s=5$ now gives
+\[
+ \int_0^\infty\frac{w(y)}{y^2+a^2}\,dy
+ =2a^4\int_0^\infty\frac{\operatorname{Im}(a-iy)^{-5}}
+                           {e^{2\pi y}-1}\,dy
+ =a^4\zeta(5,a)-\frac1{2a}-\frac14.
+\]
+At $a=j\in\Z_{>0}$, use $\zeta(5,j)=\xi-\Hfive{j-1}$ and
+$\Hfive j-\Hfive{j-1}=j^{-5}$ to recover \eqref{eq:mupole}. This verifies
+\eqref{eq:momentrep} on the partial-fraction basis and hence on its domain.
+
+Finally, a nonzero real polynomial $q$ of degree less than $h$ satisfies
+\[
+ \boldsymbol q^{\mathsf T}G_K(\xi)\boldsymbol q
+ =\int_0^\infty\frac{D_N(y^2)^6q(y^2)^2}{D_K(y^2)}w(y)\,dy>0.
+\]
+The integrand is continuous and positive on some interval: $q$ cannot
+vanish on all positive real numbers. This proves positive definiteness
+and the determinant assertion.
+\end{proof}
+
+\section{The local rational functional: explicit domains and distribution}
+\label{sec:local}
+
+\subsection{Polynomial and integer-pole definitions}
+Let $L(x^k)=B_k$ on $\Q[x]$, and let $\tau(P)=L(P''')/24$. For $r\in\Z$,
+define the nonnegative integer
+\[
+ d(r)=\begin{cases}r,&r\ge0,\\-r-1,&r<0,\end{cases}\qquad
+ \tau_X\left(\frac1{x-r}\right)=\Hfive{d(r)}-X.
+\]
+Extend by polynomial division and finite simple partial fractions to the
+vector space of rational functions with polynomial part and simple integer
+poles. At a fixed prime, extend all these rational functionals coefficientwise
+from $\Q$ to $\Qp$ before applying them to $p$-adic inputs. The following identities include the required domain restriction:
+\begin{align}
+ \mu_X(R)&=\tau_X\bigl(x^5R(-x^2)\bigr),\label{eq:pullback}\\
+ \tau_X(g(-1-x))&=-\tau_X(g(x)),\label{eq:reflection}\\
+ \tau_X(g(x+1)-g(x))&=g^{(4)}(0)/24
+                  &&\text{if $g$ is regular at $0$}.\label{eq:difference}
+\end{align}
+For \eqref{eq:pullback}, monomials follow by differentiating three times.
+For a pole use
+\[
+ \frac{x^5}{j^2-x^2}=-x^3-j^2x-\frac{j^4}{2}
+          \left(\frac1{x-j}+\frac1{x+j}\right),
+\]
+then $d(j)=j$ and $d(-j)=j-1$. The polynomial cases of
+\eqref{eq:reflection}--\eqref{eq:difference} follow from Bernoulli
+reflection and difference. For the pole cases use $d(-1-r)=d(r)$ and,
+for $r\ne0$,
+\[
+ \Hfive{d(r-1)}-\Hfive{d(r)}=-r^{-5}.
+\]
+The last identity holds for negative as well as positive $r$.
+
+\subsection{Restricted power series and meromorphic direct sums}
+Fix a prime $p\ge7$. Let
+\[
+ \mathcal A=\Qp\langle z\rangle
+ =\{\textstyle\sum_{d\ge0}f_dz^d:\ f_d\in\Qp,\ f_d\to0\},
+ \qquad \|f\|=\sup_d|f_d|_p.
+\]
+Completeness follows by coefficientwise completeness and uniform control
+of the tails. Polynomial truncations are dense. Put
+\[
+ \kappa_d=\frac{d(d-1)(d-2)B_{d-3}}{24}\ (d\ge3),
+ \qquad\kappa_0=\kappa_1=\kappa_2=0.
+\]
+Von Staudt--Clausen implies $v_p(\kappa_d)\ge-1$ for every $d$, and
+$\kappa_d\in\Zp$ for $d\le p+1$. Hence
+\begin{equation}\label{eq:tauextseries}
+ \tau\left(\sum_{d\ge0}f_dz^d\right)=\sum_{d\ge0}f_d\kappa_d,
+ \qquad \|\tau\|\le p.
+\end{equation}
+The series converges because its terms tend to zero in the complete
+nonarchimedean field.
+
+For a finite set $S$ of distinct integers, let
+\[
+ \mathcal B_S=\mathcal A\oplus\bigoplus_{r\in S}\Qp\frac1{z-r}.
+\]
+Give this space the maximum of the analytic coefficient norm and residue
+norms. It embeds into the localization of $\mathcal A$ obtained by
+inverting $\prod_{r\in S}(z-r)$. Indeed, if
+$f+\sum_rc_r/(z-r)=0$, multiplication by that product and evaluation at
+$r$ gives $c_r\prod_{s\ne r}(r-s)=0$, so each residue vanishes and then
+$f=0$. This proves uniqueness of the decomposition. No claim that
+$\mathcal B_S$ itself is a ring is needed.
+
+For $Y\in\Qp[X]$ define
+\begin{equation}\label{eq:taudirectsum}
+ \taus_Y\left(f+\sum_{r\in S}\frac{c_r}{z-r}\right)
+   =\tau(f)+\sum_{r\in S}c_r(\Hfive{d(r)}-Y).
+\end{equation}
+These maps are compatible when $S$ is enlarged. Their images lie in the
+finite-dimensional space $\Qp+\Qp Y\subset\Qp[X]$, which is complete for
+the Gauss norm. In particular, convergence in this proof never relies on
+completeness of the entire unbounded-degree polynomial ring.
+
+\begin{lemma}[Bounded division in the restricted power-series space]
+\label{lem:boundeddivision}
+Let $T(z)=\prod_{\nu=1}^t(z-r_\nu)$, where $r_\nu\in\Z$ and every
+$r_\nu-r_\eta$, $\nu\ne\eta$, is a $p$-adic unit. For $f\in\mathcal A$,
+\[
+ \frac fT=P+\sum_{\nu=1}^t\frac{c_\nu}{z-r_\nu},\qquad
+ c_\nu=\frac{f(r_\nu)}{T'(r_\nu)},
+\]
+with $P\in\mathcal A$ and
+$\max(\|P\|,|c_1|_p,\ldots,|c_t|_p)\le\|f\|$.
+For a polynomial $f$ this is ordinary division and partial fractions;
+its polynomial quotient has degree at most $\deg f$.
+\gid{Zeta5.Local.bounded_division}
+\end{lemma}
+\begin{proof}
+Evaluation at $r\in\Zp$ has norm at most one. More explicitly, if
+$f=\sum f_kz^k$, then
+\[
+ \frac{f(z)-f(r)}{z-r}=\sum_{n\ge0}
+         \left(\sum_{k\ge n+1}f_kr^{k-1-n}\right)z^n.
+\]
+The inner series converges, its absolute value is at most
+$\sup_{k\ge n+1}|f_k|_p$, and these bounds tend to zero. This proves
+bounded division by one linear factor after removing the remainder.
+
+For polynomial $f$, division by the monic integral polynomial $T$ and
+repeated subtraction of its leading term give a quotient and remainder
+with coefficients bounded by $\|f\|$. Since $T'(r_\nu)$ is a unit, the
+partial-fraction residues have the same bound. Apply this polynomial map
+to the truncations of an arbitrary $f$ and use completeness of
+$\mathcal B_S$. The displayed evaluation formula for $c_\nu$ passes to
+the limit. The localization identity passes to the limit after
+multiplication by $T$; uniqueness was proved above.
+\end{proof}
+
+\begin{proposition}[Integral extension with a degree-restricted leading term;
+source Lemma 3.1]
+\label{prop:integralextension}
+Under the hypotheses of Lemma~\ref{lem:boundeddivision}, suppose also
+$d(r_\nu)<p$, $Y\in\Zp[X]$, and $U_j\in\Zp[z]$ for every $j\ge0$.
+If $\deg U_0\le p+1$, then the series below converges in $\mathcal B_S$ and
+\begin{equation}\label{eq:integralextension}
+ \taus_Y\left(\sum_{j\ge0}\frac{p^jU_j(z)}{T(z)}\right)\in\Zp[X].
+\end{equation}
+\gid{Zeta5.Local.integral_extension}
+\end{proposition}
+\begin{proof}
+Lemma~\ref{lem:boundeddivision} bounds the norm of each $U_j/T$ by one;
+the factors $p^j$ force convergence. Each principal-part value
+$\Hfive{d(r_\nu)}-Y$ is integral because $d(r_\nu)<p$. The analytic
+functional loses at most one factor of $p$, by
+\eqref{eq:tauextseries}. For $j=0$, the quotient is a polynomial of degree
+at most $p+1$, so its value is integral without that loss. For $j\ge1$,
+$p^j$ absorbs it. All partial sums have integral output. Their limit in
+$\Qp+\Qp Y$ is integral coefficientwise because $\Zp$ is closed.
+The case $T=1$ is included.
+\end{proof}
+
+\begin{lemma}[Far poles and order of expansion]
+\label{lem:farpoles}
+If $s\in\Qp$ has $v_p(s)<0$, then $(z-s)^{-1}\in\mathcal A$ and
+\begin{equation}\label{eq:farseries}
+ \tauan\left(\frac1{z-s}\right)
+  =-\frac14\sum_{k\ge0}\binom{k+3}{3}B_k s^{-k-4}.
+\end{equation}
+If a rational function has polynomial part and only simple poles, each
+pole being either an integer or outside $\Zp$, its value under
+\eqref{eq:taudirectsum} is independent of whether one first takes global
+partial fractions or expands its far denominator factors in
+$\mathcal A$ and then separates its near principal parts.
+\gid{Zeta5.Local.far_pole_compatibility}
+\end{lemma}
+\begin{proof}
+The geometric series
+$(z-s)^{-1}=-\sum_{d\ge0}s^{-d-1}z^d$ converges in the coefficient norm.
+Apply the continuous functional and substitute $d=k+3$ to obtain
+\eqref{eq:farseries}. Products of the far expansions converge in
+$\mathcal A$ and represent the corresponding rational functions there.
+Both proposed procedures therefore give the same element of the
+localization of $\mathcal A$ at the near-pole factors. Both have the same
+simple principal parts and analytic remainder by uniqueness. Applying the
+single map \eqref{eq:taudirectsum} proves the assertion. No use of the
+integer-pole harmonic formula at a nonintegral far pole is permitted.
+\end{proof}
+
+\begin{lemma}[Reflection and difference on the completed domain]
+\label{lem:completedidentities}
+On the union of the spaces $\mathcal B_S$, for finite integer pole sets
+$S$, reflection satisfies
+\[
+ \taus_Y(g(-1-z))=-\taus_Y(g(z)).
+\]
+If $g$ is regular at zero, translation satisfies
+\[
+ \taus_Y(g(z+1)-g(z))=g^{(4)}(0)/24.
+\]
+Both assertions include analytic rational functions with far poles via
+Lemma~\ref{lem:farpoles}.
+\gid{Zeta5.Local.completed_translation_reflection}
+\end{lemma}
+\begin{proof}
+The substitutions $z\mapsto z+1$ and $z\mapsto-1-z$ are bounded maps of
+$\mathcal A$ into itself: the binomial coefficients are integral and the
+polynomial substitution maps have norm at most one, so they extend from
+dense polynomial truncations. Differentiation and evaluation at zero are
+also continuous. Thus the polynomial identities
+\eqref{eq:reflection}--\eqref{eq:difference} extend to the analytic part.
+For an integer principal part reflection sends its pole to $-1-r$, and
+translation sends it to $r-1$. The harmonic identities already checked
+prove the result on these terms. In the difference identity the term
+$r=0$ is excluded exactly by regularity at zero. Linearity combines the
+parts. A far pole remains far under these unit translations and
+reflection, so its analytic interpretation is consistent throughout.
+\end{proof}
+
+\subsection{Distribution, with the pole recurrence made explicit}
+Define
+\begin{equation}\label{eq:CpY}
+ C_p=\sum_{a=1}^{p-1}\tauan\left(\frac1{z+a/p}\right),
+ \qquad Y=p^5X+C_p.
+\end{equation}
+
+\begin{lemma}[Integrality of the distribution parameter]
+\label{lem:Cp}
+One has $C_p\in p^5\Zp$, and hence $Y\in\Zp[X]$.
+\gid{Zeta5.Local.distribution_parameter_integral}
+\end{lemma}
+\begin{proof}
+The $k=0$ terms of \eqref{eq:farseries} sum to
+$-p^4\sum_{a=1}^{p-1}a^{-4}/4$. Modulo $p$ this sum of fourth inverse
+powers is zero: $p-1\nmid4$ for $p\ge7$, and the multiplicative group of
+$\mathbb F_p$ gives the standard power-sum identity. The $k=1$ terms
+have valuation at least $5$. Each $k\ge2$ term has valuation at least
+$k+3\ge5$, using $v_p(B_k)\ge-1$. The series converges, so the claimed
+closed ideal contains its sum.
+\end{proof}
+
+\begin{proposition}[Full distribution identity; source Lemma 3.2]
+\label{prop:distribution}
+Let $g\in\Qp(z)$ have polynomial part and finitely many simple integer
+poles. With $Y$ as in \eqref{eq:CpY},
+\begin{equation}\label{eq:distribution}
+ \tau_X(g)=p^{-4}\sum_{a=0}^{p-1}\taus_Y\bigl(g(a+pz)\bigr)
+ \quad\text{in }\Qp[X].
+\end{equation}
+In each summand a pole $(r-a)/p$ is an integer when $r\equiv a\pmod p$,
+and has valuation $-1$ otherwise; it is interpreted accordingly. No
+restriction $d(r)<p$ is imposed on the original integer poles in this
+proposition. That restriction belongs only to the integrality estimate.
+\gid{Zeta5.Local.distribution}
+\end{proposition}
+\begin{proof}
+All summands are in the completed domain by
+Lemma~\ref{lem:farpoles}. Denote the right side by $T(g)$.
+For a polynomial, Bernoulli multiplication gives
+$\sum_{a=0}^{p-1}L(P(a+pz))=pL(P)$.
+Three differentiations contribute a further factor $p^3$, hence
+$T(P)=\tau(P)$. These identities are rational polynomial identities and
+therefore hold for coefficients in $\Qp$ as well.
+
+For $g_0(z)=1/z$, definition \eqref{eq:CpY} gives
+\[
+ T(g_0)=p^{-5}(-Y+C_p)=-X.
+\]
+Next, replacing $a$ by $p-1-a$ and $z$ by $-1-z$ in the sum, and applying
+Lemma~\ref{lem:completedidentities}, gives
+$T(g(-1-z))=-T(g(z))$. If $g$ is regular at zero, telescoping the finite
+sum gives
+\begin{align*}
+ T(g(z+1)-g(z))
+ &=p^{-4}\taus_Y\bigl(g(p(z+1))-g(pz)\bigr)\\
+ &=p^{-4}\frac{(g(pz))^{(4)}|_{z=0}}{24}
+ =\frac{g^{(4)}(0)}{24}.
+\end{align*}
+Here $g(pz)$ belongs to the completed domain and remains regular at zero;
+thus the completed difference identity applies with precisely its stated
+hypothesis.
+
+For $r>0$ let $g_r(z)=1/(z-r)$. Since $g_r$ is regular at zero,
+\[
+ T(g_{r-1})-T(g_r)=-r^{-5}.
+\]
+Induction from $T(g_0)=-X$ yields $T(g_r)=\Hfive r-X$ for every $r\ge0$.
+Reflection gives $T(g_{-1-r})=T(g_r)$ and hence all negative integer
+poles. Agreement on polynomials and simple principal parts proves
+\eqref{eq:distribution}. This argument is independent of any truncated
+$p$-adic numerical test.
+\end{proof}
+
