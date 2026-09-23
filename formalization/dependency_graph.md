@@ -1,9 +1,10 @@
 # Dependency graph
 
-The declaration CSV now records five unconditional proofs, one conditional
+The declaration CSV now records six unconditional proofs, one conditional
 endpoint, nine definitions, and a partial degree target. Both arithmetic integrals
-and final rational margins have Lean proofs; the finite potential and
-elementary-function certificates still have only Python verification.
+and final rational margins have Lean proofs, as does interval-checker
+soundness. The finite potential and energy/norm certificates still have
+only Python verification.
 The graph below is the planned
 mathematical dependency graph, not a generated inventory of Lean code.
 The generic `EXT_REAL_ANALYSIS` interface must be split into actual imported

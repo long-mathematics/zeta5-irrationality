@@ -26,3 +26,10 @@ Zeta5.Certificate.inner_integral :
 'Zeta5.Certificate.inner_exact_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Zeta5.Certificate.integral_three_strips' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Zeta5.Certificate.weighted_affine_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+Zeta5.Certificate.interval_soundness {x : ℝ} {I : Zeta5.Certificate.RationalInterval}
+  (c : Zeta5.Certificate.Enclosure x I) : I.Contains x
+'Zeta5.Certificate.interval_soundness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.log_sixty_four_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.atan_eighty_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.atan_half_angle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.machin_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

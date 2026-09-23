@@ -14,7 +14,7 @@ endpoint.
 
 ## Current status
 
-**Formalization status: 5 / 49 planned targets proved unconditionally;
+**Formalization status: 6 / 49 planned targets proved unconditionally;
 1 conditional theorem and 9 construction definitions implemented.**
 
 No Lean proof of irrationality is claimed yet. The repository currently
@@ -23,7 +23,7 @@ working edition of the paper, exact finite certificate verification, a
 49-target declaration ledger, an external-input ledger, and CI/integrity
 checks. The first checked proofs establish the generic integer-polynomial
 criterion, the real-series/Riemann-zeta bridge, both exact arithmetic integrals,
-and the final rational margins.
+the final rational margins, and interval-certificate soundness.
 The conditional endpoint still requires integrality, positivity, and decay
 for the actual source polynomial. The primary endpoint is:
 
@@ -79,7 +79,7 @@ python3 certificates/verify.py
 
 The checked package covers all 684 cells of the potential certificate, all
 143 symbolic inner pieces, all 11 outer affine pieces, the exact rational
-integrals, energy/scalar constants, and the final rational margins. Acceptance
+integrals, energy/scalar constants, the final rational margins, and interval-certificate soundness. Acceptance
 uses exact rational arithmetic and outward-rounded dyadic interval arithmetic,
 not floating-point comparisons.
 
