@@ -1,0 +1,161 @@
+proved equivalent pole-moment formula is also acceptable if its
+constants and domain are shown to match Definition~\ref{def:mu}.
+
+\item[Prime number theorem.]
+Equation~\eqref{eq:pnt}. Prove the weighted finite-interval consequence
+as Lemma~\ref{lem:primesuminterface}; do not assume a stronger
+normalization bound without a bridge to the actual exponents $L_p$.
+
+\item[Integration and elementary functions.]
+Complete valued fields, uniform convergence of restricted power series,
+Bochner integration/Fubini/dominated convergence in the exact domains
+used above, elementary gamma integrals, change of variables on the
+positive half-line, and the logarithm/arctangent identities used in the
+finite checker. The zero-mass energy and determinant integral have
+proofs in Section~\ref{sec:real} and remain explicit project targets.
+
+\item[Optional Legendre interface.]
+Orthogonality with squared norm $2/(2j+1)$ on $[-1,1]$; parity; and the
+exterior bound $|P_j(s)|\le(|s|+\sqrt{s^2-1})^j$ for $|s|\ge1$.
+These support only Appendix~\ref{app:approx}.
+\end{description}
+
+\subsection{Representation and statement-level hazards}
+\begin{enumerate}[leftmargin=*,label=\arabic*.]
+\item Work with the integer parameter $n$ and set $K=40n$, $N=3n$,
+$h=37n$. This avoids accidental natural-number division or unproved
+divisibility. Represent $Q_{K,M}$ on an admissible parameter subtype, or
+supply harmless values outside the admissible domain and prove the
+bridge on that domain.
+\item Define the rational functional using its unique polynomial and
+simple-pole decomposition. The domain is a vector space; arbitrary
+products may introduce double poles and leave the domain. Extend
+scalars explicitly before applying it over $\Qp$.
+\item Use a restricted sequence space plus a finite residue vector if
+that avoids a general Tate-algebra library. Preserve the bounded
+analytic remainder and the near/far distinction. The target of a
+convergent local evaluation has bounded polynomial degree; do not
+silently use completeness of all of $\Qp[X]$ in the Gauss norm.
+\item State all arithmetic bounds for the \emph{Gauss valuation of
+coefficients}, including the constant coefficient, not merely for the
+specialized value at $\xi$. Keep the small primes $2,3,5$ in the
+universal argument and retain the factor $v_p(24)$.
+\item Keep the signs of $L_p$ and use integer powers in \eqref{eq:mdef}.
+The inner row weights may be positive. Only the rank-correction lemma
+requires all its weights to be nonpositive. Its rank hypothesis is rank
+over $\Qp$, not rank of a reduction modulo $p$.
+\item Keep $M$ fixed before passing to $K\to\infty$. Distinguish the
+explicit admissibility threshold from the eventual asymptotic threshold.
+A numerical check at $n=200000$ is not a proof of eventual decay.
+\item In standard Lean real analysis, \texttt{Real.log 0} is a totalized
+value, not $-\infty$ (see \cite{MathlibLog}). The logarithmic-energy interface must therefore
+include nullity of the diagonal as well as integrability of a real-valued
+representative, or use an extended-valued singular kernel and prove that
+nullity. For configuration bounds first assume the points are pairwise
+distinct; treat collisions separately by the zero Vandermonde product.
+Do not translate the displayed $-\infty$ convention into a false real
+inequality involving a totalized logarithm.
+\item Before every inverse, logarithm, and determinant quotient, retain
+the needed nonzero or positivity proof. The source weight is defined
+for $y>0$; a value at $y=0$ must be assigned separately if a globally
+continuous extension is desired.
+\item Validate every certificate branch, including square-root domains,
+reciprocal nonvanishing, partition coverage, and the finite set of
+excluded integral endpoints. Validating only final floating-point values
+is insufficient. In the outer certificate retain the entire interval
+$(1,2\lambda)$ and the piecewise definition \eqref{eq:douter}.
+\end{enumerate}
+
+\subsection{Recommended build stages and completion criteria}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.08\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.54\linewidth}}
+\toprule
+Stage & Module group & Deliverable\\
+\midrule
+1 & Definitions and endpoint & Actual determinant definitions,
+real-series target, rational-evaluation lemma, and a visibly conditional
+end-to-end theorem.\\
+2 & Exact arithmetic & Rational constants, parameter identities,
+Appendix B branch certificates, and a sound interval checker.\\
+3 & Completed local functional & Bounded division, principal-part
+compatibility, reflection/difference, and the full distribution identity.\\
+4 & Local determinant bounds & Small-prime bound, both unimodular
+bases, all weight comparisons, field-rank correction, integrality.\\
+5 & Prime normalization & Uniform finite-count estimates, PNT interface,
+weighted prime sums, periodic-tail bound, fixed-cutoff growth.\\
+6 & Positive and real analysis & Moment representation, Gaussian
+zero-mass energy, regularization, confinement, determinant integral.\\
+7 & Main endpoint & Instantiate every input; prove integer polynomial
+decay and the unconditional irrationality theorem; audit axioms.\\
+8 & Optional consequences & Relative norm, exponent $260$, height,
+primitive normalization.\\
+\bottomrule
+\end{tabular}
+\end{center}
+The stages may proceed in parallel where dependencies allow. The local
+functional and numerical certificates deserve early attention because
+they resolve the most compressed parts of the source argument.
+
+The files \path{formalization/declarations.csv} and
+\path{formalization/dependency_graph.md} give the stable target list and
+its dependencies. \path{AGENTS.md} supplies operational instructions.
+No proposed theorem may be weakened silently to make a build pass.
+When an obstruction occurs, record the exact failed statement and a
+minimal counterexample or missing lemma; distinguish a mathematical
+counterexample from missing library infrastructure. Keep public status
+conditional until the endpoint has no project-owned assumptions.
+
+\subsection{Verification performed for this edition}
+The finite checker was executed with ordinary Python integer arithmetic
+and 192-bit outward-rounded intervals. It accepted all sixteen measure
+components, the minimizing-point bracket and its sign conditions, all
+684 potential cells, the energy and scalar enclosures, the optional
+$\kappa$ enclosure, the 143 symbolic inner branches, all seventeen unit
+integrals, the eleven outer branches, and both exact final margins.
+It also checks the elementary rational tail calculation at $20$ and the
+two approximation-constant identities.
+
+The provided audits additionally report small-$K$ determinant
+calculations and truncated $p$-adic distribution tests. Those reports
+are preserved as provenance in \path{REPAIRS.md}; they have not been
+relabelled as computations performed in this edition, and none is used
+as a proof premise. This document does not assert that all possible
+mathematical defects have been excluded. It makes the revised proof
+obligations explicit and supplies reproducible finite certificates for
+the computations it actually checks.
+
+\begin{thebibliography}{9}
+\bibitem{Fauzan}
+A. Fauzan, \emph{$\zeta(5)$ is irrational}, supplied 32-page manuscript,
+17 September 2026. The source file and its SHA-256 digest are identified
+in Section~\ref{sec:overview}. Original author contact in the source:
+\texttt{aabir.fauzan@aalto.fi}.
+
+\bibitem{DLMF}
+National Institute of Standards and Technology,
+\emph{Digital Library of Mathematical Functions}, Chapters 18, 24, 25,
+and 27. In particular (18.10.5), (24.4.1), (24.4.3), (24.4.18),
+\S24.10(i), (25.6.2), (25.11.29), and \S27.12.
+\url{https://dlmf.nist.gov/}.
+
+\bibitem{Saff}
+E. B. Saff, \emph{Logarithmic potential theory with applications to
+approximation theory}, Surveys in Approximation Theory \textbf{5}
+(2010), 165--200, arXiv:1010.3760.
+
+\bibitem{Forrester}
+P. J. Forrester, \emph{Meet Andr\'eief, Bordeaux 1886, and Andreev,
+Kharkov 1882--1883}, Random Matrices: Theory and Applications
+\textbf{8} (2019), no. 2, 1930001, arXiv:1806.10411.
+\bibitem{LeanValidation}
+The Lean reference manual, \emph{Axioms} and \emph{Validating a Lean Proof},
+consulted 23 September 2026.
+\url{https://lean-lang.org/doc/reference/latest/Axioms/};
+\url{https://lean-lang.org/doc/reference/latest/ValidatingProofs/}.
+
+\bibitem{MathlibLog}
+The Mathlib documentation, \texttt{Mathlib.Analysis.SpecialFunctions.Log.Basic},
+in particular \texttt{Real.log\_zero}, consulted 23 September 2026.
+\url{https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/SpecialFunctions/Log/Basic.html}.
+\end{thebibliography}
+\end{document}
