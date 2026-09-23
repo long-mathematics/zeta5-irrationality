@@ -25,6 +25,23 @@ executable is a separate smoke test and does not link all of Mathlib.
   `Mathlib/LinearAlgebra/Matrix/Polynomial.lean`: the determinant of an affine
   polynomial matrix has degree at most its dimension.
 - `bernoulli` in `Mathlib/NumberTheory/Bernoulli.lean` uses `B₁ = -1/2`.
+- Interval-integral congruence on open intervals and adjacent-interval
+  summation in `Mathlib/MeasureTheory/Integral/IntervalIntegral/Basic.lean`
+  handle the finite branch endpoints and partition assembly.
+- `integral_id` and `integral_zpow` in
+  `Mathlib/Analysis/SpecialFunctions/Integrals/Basic.lean` provide the affine
+  and inverse-power integral formulas with their domain hypotheses.
+- `Real.hasDerivAt_half_log_one_add_div_one_sub_sub_sum_range` and
+  `Real.sum_range_le_log_div` in `Mathlib/Analysis/SpecialFunctions/Log/Deriv.lean`
+  support the project's sharper 64-term logarithm remainder proof.
+- `Real.hasSum_arctan` in
+  `Mathlib/Analysis/SpecialFunctions/Complex/Arctan.lean`, together with the
+  even/odd partial-sum bounds in `Mathlib/Analysis/SpecificLimits/Normed.lean`,
+  supplies the source's 80-term arctangent remainder.
+- `Real.arctan_add`, `Real.arctan_inv_of_pos`, and
+  `Real.four_mul_arctan_inv_5_sub_arctan_inv_239` in
+  `Mathlib/Analysis/SpecialFunctions/Trigonometric/Arctan.lean` give the
+  checked argument reductions and exact Machin identity.
 
 ## Further interfaces located, not yet discharged
 

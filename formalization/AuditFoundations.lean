@@ -25,3 +25,10 @@ import Zeta5
 #print axioms Zeta5.Certificate.inner_exact_sum
 #print axioms Zeta5.Certificate.integral_three_strips
 #print axioms Zeta5.Certificate.weighted_affine_integral
+
+#check Zeta5.Certificate.interval_soundness
+#print axioms Zeta5.Certificate.interval_soundness
+#print axioms Zeta5.Certificate.log_sixty_four_remainder
+#print axioms Zeta5.Certificate.atan_eighty_remainder
+#print axioms Zeta5.Certificate.atan_half_angle
+#print axioms Zeta5.Certificate.machin_identity

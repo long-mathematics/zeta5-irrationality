@@ -4,3 +4,4 @@ import Zeta5.Certificate.Margins
 import Zeta5.Certificate.OuterIntegral
 import Zeta5.Main.Conditional
 import Zeta5.Certificate.InnerIntegral
+import Zeta5.Certificate.Interval
