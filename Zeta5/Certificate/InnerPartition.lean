@@ -1,17 +1,3 @@
-import Zeta5.Certificate.InnerBranches.Group00
-import Zeta5.Certificate.InnerBranches.Group01
-import Zeta5.Certificate.InnerBranches.Group02
-import Zeta5.Certificate.InnerBranches.Group03
-import Zeta5.Certificate.InnerBranches.Group04
-import Zeta5.Certificate.InnerBranches.Group05
-import Zeta5.Certificate.InnerBranches.Group06
-import Zeta5.Certificate.InnerBranches.Group07
-import Zeta5.Certificate.InnerBranches.Group08
-import Zeta5.Certificate.InnerBranches.Group09
-import Zeta5.Certificate.InnerBranches.Group10
-import Zeta5.Certificate.InnerBranches.Group11
-import Zeta5.Certificate.InnerBranches.Group12
-import Zeta5.Certificate.InnerBranches.Group13
 import Zeta5.Certificate.InnerBranches.Group14
 
 /-! Generated source partition and branch assembly. -/
