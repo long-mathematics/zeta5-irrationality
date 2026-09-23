@@ -19,3 +19,10 @@ Zeta5.Certificate.outer_integral : ∫ (y : ℝ) in 1 / 3..37 / 20, Zeta5.Certif
 'Zeta5.Certificate.outer_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Zeta5.Certificate.outer_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Zeta5.Certificate.outer_piece_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+Zeta5.Certificate.inner_integral :
+  ∫ (x : ℝ) in 3..20, Zeta5.Certificate.innerIntegrand x = 322437603634266857629 / 7535670527041937280000
+'Zeta5.Certificate.inner_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.inner_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.inner_exact_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.integral_three_strips' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.weighted_affine_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
