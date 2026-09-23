@@ -1,0 +1,300 @@
+\subsection{Integer-valued polynomials and the small-prime estimate}
+For a prime $p$ and integer $D\ge1$, write
+\[
+ \ell_p(D)=\max\{e\in\N:p^e\le D\}=\floor{\log_p D}.
+\]
+The integer characterization is preferable in a formal development.
+
+\begin{lemma}[Losses for integer-valued polynomials]
+\label{lem:integervalued}
+Let $A\in\Qp[x]$ have degree at most $d$ and map $\Zp$ into $\Zp$.
+Then its coefficients in the basis $\binom{x}{k}$ are integral and
+\[
+ v_p(A(x)-A(y))\ge v_p(x-y)-\ell_p(\max(1,d))\qquad(x,y\in\Zp).
+\]
+Its $r$th derivative is integer-valued up to a loss of at most
+$r\ell_p(\max(1,d))$. If $P(\Zp)\subseteq p^{-A_0}\Zp$ and
+$\deg P\le d$, then
+\begin{equation}\label{eq:tauivbound}
+ v_p(\tau(P))\ge-A_0-4\ell_p(d+1)-v_p(24).
+\end{equation}
+\gid{Zeta5.Local.integer_valued_estimates}
+\end{lemma}
+\begin{proof}
+The binomial coefficients of $A$ are its finite forward differences at
+zero, hence integral. Vandermonde's identity, together with
+$\binom{z}{j}=z\binom{z-1}{j-1}/j$, gives the difference estimate.
+For derivatives expand $\binom{x+z}{k}$ by Vandermonde. The coefficient
+of $z^r$ in $\binom zj$ is a sum of products of $r$ reciprocals of
+positive integers at most $j$: use
+$\binom zj=(-1)^{j-1}(z/j)\prod_{u=1}^{j-1}(1-z/u)$.
+Each product has valuation at least $-r\ell_p(\max(1,d))$; multiplication
+by $r!$ cannot worsen it.
+
+The formal generating identity
+$L((1+z)^x)=\log(1+z)/z$ gives
+$L(\binom{x}{k})=(-1)^k/(k+1)$. Apply the third-derivative estimate,
+expand the resulting polynomial in the binomial basis, and apply this
+last identity. A further loss at most $\ell_p(d+1)$ and the factor $24$
+give \eqref{eq:tauivbound}. Scaling by $p^{A_0}$ treats the stated range.
+\end{proof}
+
+\begin{proposition}[Small-prime rational estimate; source Lemma 3.3]
+\label{prop:smallprime}
+For any prime $p$, let $A\in\Qp[x]$ be integer-valued on $\Zp$ with
+$\deg A\le d$, and let $K\ge1$. Set
+\[
+ g(x)=\frac{(K!)^2A(x)}{\prod_{-K\le r\le K,\ r\ne0}(x-r)}.
+\]
+Then
+\begin{equation}\label{eq:smallprime}
+ v_p^{\mathrm G}(\tau_X(g))
+ \ge-6\ell_p(\max(2K,d+1))-v_p(24).
+\end{equation}
+\gid{Zeta5.Local.small_prime_functional_bound}
+\end{proposition}
+\begin{proof}
+Let $S=\{-K,\ldots,-1,1,\ldots,K\}$ and $L_0=\ell_p(2K)$.
+Write $g=P+\sum_{r\in S}c_r/(x-r)$. The residue is, up to sign,
+\[
+ c_r=\frac{(K!)^2rA(r)}{(K+r)!(K-r)!},\qquad v_p(c_r)\ge-L_0.
+\]
+For each power $p^a\le2K$ the difference between the two denominator
+factorial floor sums and $2\floor{K/p^a}$ is at most one. Larger powers
+contribute zero, which proves the bound.
+
+Suppose first $x$ lies outside every ball $r+p^{L_0+1}\Zp$. At level
+$p^a$, $a\le L_0$, each of the two length-$K$ integer intervals in $S$
+contains at most $\floor{K/p^a}+1$ elements congruent to $x$. There are
+no roots with $v_p(x-r)>L_0$. Counting by levels therefore gives
+$v_p(g(x))\ge-2L_0$. Each principal part has the same lower bound, so
+$v_p(P(x))\ge-2L_0$.
+
+Now suppose $x\in r+p^{L_0+1}\Zp$. This center is unique, since distinct
+roots differ by an integer of absolute value at most $2K$. Put
+\[
+ F_r(x)=\frac{(K!)^2}{\prod_{s\in S\setminus\{r\}}(x-s)}.
+\]
+For every $s\ne r$, $v_p(x-s)=v_p(r-s)\le L_0$. Thus
+$v_p(F_r(x))=v_p(F_r(r))\ge-L_0$. If $q=v_p(x-r)>L_0$, expand the
+finite product
+\[
+ \frac{F_r(x)}{F_r(r)}
+ =\prod_{s\ne r}\left(1+\frac{x-r}{r-s}\right)^{-1}.
+\]
+Every factor is $1$ modulo $p^{q-L_0}$, whence
+$v_p(F_r(x)-F_r(r))\ge q-2L_0$. Subtracting the principal part at $r$
+yields
+\[
+ \frac{A(x)F_r(x)-A(r)F_r(r)}{x-r}
+ =\frac{(A(x)-A(r))F_r(x)}{x-r}
+  +\frac{A(r)(F_r(x)-F_r(r))}{x-r}.
+\]
+Lemma~\ref{lem:integervalued} bounds its valuation below by
+$-L_0-\max(L_0,\ell_p(\max(1,d)))$. All other principal parts are bounded
+below by $-2L_0$. Continuity of the polynomial $P$ includes the centers.
+Consequently
+\[
+ P(\Zp)\subseteq p^{-L_0-M_0}\Zp,
+ \qquad M_0=\max(L_0,\ell_p(\max(1,d))).
+\]
+Here $M_0$ is local to this proof, not the real-potential constant used
+later. Since $\deg P\le d$, \eqref{eq:tauivbound} gives the required
+$-6\ell_p(\max(2K,d+1))-v_p(24)$ bound for its value. For a principal
+part, $d(r)\le K$ implies
+$v_p(\Hfive{d(r)})\ge-5\ell_p(K)$, and its coefficient of $X$ has
+valuation at least $-L_0$. This gives the same bound coefficientwise.
+The ultrametric inequality finishes the proof.
+\end{proof}
+
+Define
+\[
+ q_0(t)=1,\qquad q_i(t)=\frac{(-1)^i2tD_{i-1}(t)}{(2i)!}\ (i\ge1),
+ \qquad f_i(t)=\left(\frac{D_N(t)}{(N!)^2}\right)^3q_i(t).
+\]
+The identities
+\[
+ q_i(-x^2)=\binom{x+i}{2i}+\binom{x+i-1}{2i},\qquad
+ \frac{D_N(-x^2)}{(N!)^2}=\binom{N-x}{N}\binom{N+x}{N}
+\]
+show that $f_i(-x^2)$ is integer-valued on every $\Zp$. The triangular
+change from monomials to $q_i$ gives exactly
+\begin{equation}\label{eq:Fbasis}
+ F_K(X)=\det\left[(K!)^2\mu_X\left(\frac{f_i(t)f_j(t)}{D_K(t)}\right)
+              \right]_{0\le i,j<h}.
+\end{equation}
+The pullback numerator $x^5f_i(-x^2)f_j(-x^2)$ has degree at most
+$12N+4h+1$, so $\max(2K,d+1)\le5K$. Applying
+Proposition~\ref{prop:smallprime} entrywise and expanding the determinant
+proves the universal bound
+\begin{equation}\label{eq:Fsmall}
+ v_p^{\mathrm G}(F_K)\ge-6h\ell_p(5K)-h v_p(24)
+ \qquad\text{for every prime }p.
+\end{equation}
+\gid{Zeta5.small_prime_determinant_bound}
+
+\section{Local determinant estimates}
+\label{sec:detlocal}
+Fix an integer $M\ge40$ and assume $K\in40\Z_{>0}$ and $K\ge200M^2$.
+The small-prime estimate is used for $p\le K/M$. Two separate bases give
+stronger estimates above this cutoff.
+
+\subsection{The inner range: allocation, degree checks, and every weight case}
+Suppose
+\begin{equation}\label{eq:innerhyp}
+ K/M<p\le K/3.
+\end{equation}
+Then $p>200M$, $p^2>5K$, and $p\ge7$. Put $m=(p-1)/2$, and for
+$1\le a\le m$ define
+\[
+ \ell_A(a)=\#\{1\le j\le A:j\equiv a\text{ or }-a\pmod p\},
+ \qquad m_A=\floor{A/p}.
+\]
+If a row polynomial has a zero of order $\nu_i(a)$ at $t=-a^2$, the
+residue substitutions $x=c+pz$ in \eqref{eq:pullback} and
+\eqref{eq:distribution} give the following candidate entry bounds:
+\begin{align}
+ \nu_i(a)+\nu_j(a)+6\ell_N(a)-\ell_K(a)-4
+ &\quad (c=a\text{ or }p-a),\label{eq:ordinarysource}\\
+ 2\nu_i(0)+2\nu_j(0)+12m_N-2m_K+1
+ &\quad (c=0).\label{eq:zerosource}
+\end{align}
+We justify the degree and completed-domain conditions after specifying
+the basis; the displayed powers alone are not yet the full argument.
+
+Set $L_0=4M+10$ and $b_a=3\ell_N(a)$. There are unique integers $T,E$
+with
+\begin{equation}\label{eq:allocation}
+ mT+E=h-L_0+3(N-m_N),\qquad0\le E<m.
+\end{equation}
+Order the ordinary classes by nonincreasing $\ell_K(a)$, breaking ties
+by increasing $a$, and give $\epsilon_a=1$ to the first $E$ classes and
+$0$ to the others. Define
+\[
+ L_a=T-b_a+\epsilon_a,\qquad Z_a=L_a+b_a=T+\epsilon_a.
+\]
+Because $\sum_{a=1}^m\ell_N(a)=N-m_N$,
+$L_0+\sum_{a=1}^mL_a=h$. With $x=K/p\in[3,M)$, \eqref{eq:allocation}
+implies
+\[
+ 2Hx-\frac{21}{20}<T<2Hx,\qquad b_a\le6\alpha x+3.
+\]
+For the lower bound, write the numerator in \eqref{eq:allocation} as
+$HK-L_0-3m_N$, use $2E/(p-1)<1$, and use
+$(2L_0+6m_N)/(p-1)<1/20$. For the upper bound,
+$2L_0+6m_N>2Hx$. These inequalities follow from $p>200M$,
+$m_N\le\alpha M$, and $L_0=4M+10$. Consequently
+\[
+ T-b_a>2\lambda x-\frac{81}{20}\ge\frac32,
+\]
+so each ordinary $L_a$ is a positive integer.
+
+For $0\le a\le m$ and $0\le i<L_a$, let
+\begin{equation}\label{eq:innerbasis}
+ E_{a,i}(t)=\prod_{\substack{0\le c\le m\\c\ne a}}(t+c^2)^{L_c}
+                      (t+a^2)^i.
+\end{equation}
+All degrees are less than $h$. The factors $t+c^2$ are pairwise coprime
+modulo $p$. In the Chinese remainder decomposition for their powers,
+the local blocks of \eqref{eq:innerbasis} are triangular with unit
+diagonal. Thus these $h$ polynomials form a $\Zp$-unimodular basis of
+polynomials of degree less than $h$.
+
+Define half-integer weights
+\begin{align}
+ w_{a,i}&=i+b_a-\frac{\ell_K(a)+4}{2} &&(a>0),\label{eq:innerweights}\\
+ w_{0,i}&=\min\left(2i+6m_N-m_K+\frac12,
+                   \min_{c>0}\left(Z_c-\frac{\ell_K(c)+4}{2}\right)\right),
+ \label{eq:zeroweights}\\
+ \gamma_p^{\mathrm{in}}&=2\sum_{a=0}^m\sum_{i=0}^{L_a-1}w_{a,i}\in\Z.
+ \label{eq:gammain}
+\end{align}
+
+\begin{proposition}[Inner valuation; source Proposition 4.1]
+\label{prop:inner}
+Under \eqref{eq:innerhyp},
+$v_p^{\mathrm G}(\Delta_K)\ge\gamma_p^{\mathrm{in}}$.
+\gid{Zeta5.inner_determinant_valuation}
+\end{proposition}
+\begin{proof}
+\emph{The local summands really have the required integral form.}
+After $x=c+pz$, a near denominator factor is $p$ times a linear factor
+with an integer zero. The near integers have absolute value at most
+$M+1$ and mutual nonzero differences of absolute value less than $p$,
+so those differences are units. Their $d(r)$ indices are less than $p$.
+A far factor is a unit times a geometric series in $pz$. After extracting
+the indicated power of $p$, the ordinary summand has the form
+$\sum_{j\ge0}p^jU_j/T$ of Proposition~\ref{prop:integralextension}.
+Its leading numerator has degree at most
+\[
+ \nu_i(a)+\nu_j(a)+6\ell_N(a)\le2(T+1)<\frac{23}{5}M+2<p+1.
+\]
+Here every row satisfies $\nu_i(a)+b_a\le Z_a\le T+1$.
+At the zero source, $x^5$ contributes $p^5z^5$, a zero of order $\nu$
+in $t$ contributes $p^{2\nu}$, and the $\pm jp$ poles contribute the
+$2m_K$ denominator factors. Its leading numerator degree is at most
+\[
+ 5+2\nu_i(0)+2\nu_j(0)+12m_N
+ \le5+4L_0+12m_N\le\frac{169}{10}M+45<p+1.
+\]
+The outside distribution factor is $p^{-4}$. Together with
+$Y\in\Zp[X]$, these observations prove
+\eqref{eq:ordinarysource}--\eqref{eq:zerosource} for the \emph{whole}
+summands, including their analytic polynomial quotients.
+
+\emph{Each source dominates the assigned weight for each row.}
+The following table lists the half-bound contributed by one row. Adding
+the two row entries in the same source column gives the entry bound.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Row & Ordinary source $c>0$ & Zero source\\
+\midrule
+$(a,i)$, $a=c>0$ & $w_{a,i}$ & $2L_0+6m_N-m_K+1/2$\\
+$(a,i)$, $a\ne c$, $a>0$ & $Z_c-(\ell_K(c)+4)/2$
+                       & $2L_0+6m_N-m_K+1/2$\\
+$(0,i)$ & $Z_c-(\ell_K(c)+4)/2$ & $2i+6m_N-m_K+1/2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The zero row is covered directly by the minimum in
+\eqref{eq:zeroweights}. For an ordinary row $a\ne c$, since
+$i\le L_a-1$, the difference between the table entry and its assigned
+weight is at least
+\[
+ Z_c-Z_a+1+\frac{\ell_K(a)-\ell_K(c)}2.
+\]
+The counts $\ell_K$ take two consecutive values. The exhaustive extra-row
+cases are
+\begin{center}
+\begin{tabular}{ccl}
+\toprule
+$\epsilon_a$ & $\epsilon_c$ & Lower bound for the difference\\
+\midrule
+0 & 0 & $1/2$\\
+1 & 1 & $1/2$\\
+0 & 1 & $3/2$\\
+1 & 0 & $0$, because the allocation order gives $\ell_K(a)\ge\ell_K(c)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+At the zero source an ordinary row has half-bound at least
+$2L_0-m_K+1/2\ge7M+41/2$. On the other hand
+$w_{a,i}<T+1\le2HM+1$. The zero source therefore also dominates.
+These checks exhaust every row and every source.
+
+Consequently every matrix entry in this basis has Gauss valuation at
+least the sum of its two assigned row weights. In a determinant term
+those weights occur twice in total, so its valuation is at least
+$\gamma_p^{\mathrm{in}}$. The ultrametric inequality gives the determinant
+bound. A unimodular basis change multiplies its determinant by a square
+of a unit and does not alter the valuation.
+\end{proof}
+
+\subsection{The outer range: polynomial correction and its actual rank}
+Assume for this subsection that
+\begin{equation}\label{eq:outerhyp}
+ p\ge7,\quad p\le K<3p,\quad p^2>2K,\quad
+ 2N<p,\quad5N\le2p-2.
+\end{equation}
+These conditions hold for $K/3<p\le K$ under the global admissibility
