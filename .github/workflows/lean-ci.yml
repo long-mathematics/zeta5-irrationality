@@ -36,6 +36,11 @@ jobs:
           build: true
           use-mathlib-cache: true
 
+      - name: Check foundation statements and axiom dependencies
+        run: |
+          lake env lean formalization/AuditFoundations.lean > /tmp/zeta5-foundation-audit.txt
+          diff -u formalization/audits/foundations.txt /tmp/zeta5-foundation-audit.txt
+
   certificates:
     name: Verify finite certificates
     runs-on: ubuntu-24.04

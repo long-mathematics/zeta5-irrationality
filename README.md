@@ -11,13 +11,17 @@ endpoint.
 
 ## Current status
 
-**Formalization status: 0 / 49 planned mathematical targets proved.**
+**Formalization status: 3 / 49 planned targets proved unconditionally;
+1 conditional theorem and 9 construction definitions implemented.**
 
 No Lean proof of irrationality is claimed yet. The repository currently
 contains a pinned Lean/Mathlib project, an expanded formalization-oriented
 working edition of the paper, exact finite certificate verification, a
 49-target declaration ledger, an external-input ledger, and CI/integrity
-checks. The primary endpoint is:
+checks. The first checked proofs establish the generic integer-polynomial
+criterion, the real-series/Riemann-zeta bridge, and the final rational margins.
+The conditional endpoint still requires integrality, positivity, and decay
+for the actual source polynomial. The primary endpoint is:
 
 ```lean
 Zeta5.zeta_five_irrational

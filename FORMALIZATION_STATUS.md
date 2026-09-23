@@ -14,7 +14,52 @@ Planned mathematical declarations: **49 total**, of which **45** are required
 for the main irrationality theorem and **4** belong only to the optional
 rational-approximation/height branch.
 
-Current proved target count: **0 / 49**.
+Current unconditional proved target count: **3 / 49**. In addition, **1**
+explicitly conditional target is proved and **9** construction definitions
+compile. These categories are reported separately; definitions and the
+conditional endpoint are not proofs of irrationality.
+
+The three unconditional targets are:
+
+- `Zeta5.irrational_of_integer_polynomials`;
+- `Zeta5.zetaFive_eq_riemannZeta`;
+- `Zeta5.Certificate.final_rational_margins`.
+
+The actual `GK`, `deltaK`, `scalarSK`, `FK`, signed `normalizationFactor`, and
+`QKM` are defined. The functional uses polynomial and finite simple-pole
+coordinates. Proofs of the rational-function embedding and the entry
+partial-fraction identity remain outstanding; no correspondence theorem is
+claimed for those definitions yet.
+
+The degree upper bound `QKM_natDegree_le` is proved, so the conditional theorem
+`irrational_of_inputs` has exactly three remaining estimates as arguments:
+eventual integrality, positivity, and quadratic exponential decay of the
+actual `QKM n 200`. The exact-degree target, including its nonzero leading
+coefficient formula, remains partial. Helper results do not increase the
+49-target coverage count.
+
+The final margins are checked from the unchanged rational constants with
+proof-producing `norm_num`. The proofs that the inner and outer integrals
+equal those constants are still pending, as is the elementary-function
+interval checker and the potential certificate.
+
+## Latest verification
+
+- `lake build` passed with the original pinned Lean and Mathlib revisions.
+- All 6 repository audit tests passed; the source audit found no proof
+  placeholders or project-owned axioms.
+- The Python verifier reproduced all 684 potential cells, 143 inner pieces,
+  11 outer pieces, and the numerical constants.
+- The public foundation audit is in
+  [`formalization/audits/foundations.txt`](formalization/audits/foundations.txt),
+  reproducible with `lake env lean formalization/AuditFoundations.lean`.
+  Its declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
+  No native-evaluation axiom occurs in the rational-margin proof.
+- [`formalization/TOOLCHAIN.md`](formalization/TOOLCHAIN.md) records exact
+  inspected library interfaces and outstanding library searches.
+
+There is no declaration `Zeta5.zeta_five_irrational` yet and no endpoint axiom
+audit to report. The unconditional completion criteria below remain unmet.
 
 The source-of-truth declaration inventory is
 [`formalization/declarations.csv`](formalization/declarations.csv). Update that
@@ -46,8 +91,8 @@ criteria.
 
 | Stage | Scope | Targets | Status |
 |---|---|---:|---|
-| 1 | Definitions, determinant degree, generic contradiction, conditional bridge | 13 | pending |
-| 2 | Kernel-checkable finite certificates | 6 | pending |
+| 1 | Definitions, determinant degree, generic contradiction, conditional bridge | 13 | 9 definitions; 2 unconditional proofs; 1 conditional proof; exact degree partial |
+| 2 | Kernel-checkable finite certificates | 6 | rational margins proved; 5 pending |
 | 3 | Completed local rational functional and distribution | 7 | pending |
 | 4 | Inner/outer determinant valuation estimates | 6 | pending |
 | 5 | Normalization and prime-sum asymptotics | 4 | pending |
