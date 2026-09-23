@@ -124,7 +124,8 @@ experiments as proof premises.
 
 ## Licensing
 
-No repository-wide license is asserted for the reconstructed manuscript in
-`paper/`. The mathematical source remains attributable to its stated author.
-A code license can be added separately once the desired licensing scope is
-fixed.
+Repository code and infrastructure are distributed under the existing
+[MIT License](LICENSE). The reconstructed working edition in `paper/` remains
+explicitly attributed to Aabir Fauzan as the author of the underlying
+mathematical manuscript; this repository does not represent the reconstruction
+as Fauzan's original source or as an author-approved revision.
