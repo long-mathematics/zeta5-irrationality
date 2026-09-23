@@ -32,8 +32,8 @@ See [`FORMALIZATION_STATUS.md`](FORMALIZATION_STATUS.md) for the live status and
 
 ## Mathematical source and working edition
 
-- [Expanded formalization working edition (PDF)](paper/zeta5_formalization_draft.pdf)
-- [Expanded LaTeX source](paper/zeta5_formalization_draft.tex)
+- [Expanded LaTeX working edition](paper/zeta5_formalization_draft.tex)
+- Compile the working PDF locally with `make pdf`
 - [Repair and audit-provenance log](REPAIRS.md)
 - [Formalization dependency graph](formalization/dependency_graph.md)
 - [Declaration ledger](formalization/declarations.csv)
