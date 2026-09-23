@@ -1,0 +1,17 @@
+Zeta5.irrational_of_inputs (n₀ : ℕ) (hintegral : ∀ n ≥ n₀, ∃ P, Polynomial.map (Int.castRingHom ℚ) P = Zeta5.QKM n 200)
+  (hpos : ∀ n ≥ n₀, 0 < Polynomial.eval₂ (Rat.castHom ℝ) Zeta5.zetaFive (Zeta5.QKM n 200))
+  (hsmall :
+    ∀ n ≥ n₀, Polynomial.eval₂ (Rat.castHom ℝ) Zeta5.zetaFive (Zeta5.QKM n 200) < Real.exp (-(139 / 5) * ↑n ^ 2)) :
+  Irrational Zeta5.zetaFive
+Zeta5.zetaFive_eq_riemannZeta : ↑Zeta5.zetaFive = riemannZeta 5
+'Zeta5.irrational_of_integer_polynomials' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.irrational_of_inputs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.zetaFive_eq_riemannZeta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.zetaFive_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.final_rational_margins' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.aStar_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.QKM_natDegree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.normalizationFactor_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.muX' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.GK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.QKM' depends on axioms: [propext, Classical.choice, Quot.sound]

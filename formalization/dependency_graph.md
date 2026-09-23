@@ -1,8 +1,10 @@
 # Dependency graph
 
-All Lean targets are currently pending. The finite certificates passed the
-included independent Python checker; none is yet a Lean proof. The CSV is an
-acyclic proposed declaration graph, not a generated inventory of Lean code.
+The declaration CSV now records three unconditional proofs, one conditional
+endpoint, nine definitions, and a partial degree target. The finite potential
+and integral certificates still have only Python verification; the final
+rational margins have separate Lean proofs. The graph below is the planned
+mathematical dependency graph, not a generated inventory of Lean code.
 The generic `EXT_REAL_ANALYSIS` interface must be split into actual imported
 or proved declarations as implementation proceeds; it is not permission to
 introduce an omnibus axiom.
