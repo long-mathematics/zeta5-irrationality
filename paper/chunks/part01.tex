@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,longtable,array,microtype,enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Fauzan's determinant construction for zeta(5): formalization working edition},
+ pdfauthor={Original mathematics: Aabir Fauzan; working edition prepared for Christopher D. Long},
+ pdfsubject={Expanded mathematical proof draft, exact certificates, and autonomous Lean specification},
+ pdfkeywords={zeta(5), irrationality, Hankel determinant, Lean, formalization}}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Fauzan's $\zeta(5)$ construction}
+\fancyhead[R]{\small Formalization working edition}
+\fancyfoot[C]{\thepage}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{1.25em}
+\setcounter{tocdepth}{2}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{specification}[theorem]{Specification}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\N}{\mathbb N}
+\newcommand{\Qp}{\mathbb Q_p}\newcommand{\Zp}{\mathbb Z_p}
+\newcommand{\vG}{v_p^{\mathrm G}}
+\newcommand{\pp}[1]{\left(#1\right)_+}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\fracpart}[1]{\left\{#1\right\}}
+\newcommand{\Hfive}[1]{H^{(5)}_{#1}}
+\newcommand{\tailD}{D_{\mathrm{tail}}}
+\newcommand{\taus}{\tau^{\mathrm{ext}}}
+\newcommand{\tauan}{\tau^{\mathrm{an}}}
+\newcommand{\gid}[1]{\par\noindent\textit{Stable target: }\path{#1}.\par\smallskip}
+\newcommand{\source}[1]{\textit{Source: #1.}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\lcm}{lcm}
+\numberwithin{equation}{section}
+
+\title{Fauzan's determinant construction for $\zeta(5)$\\[3pt]
+\large Expanded proof draft and Lean formalization specification}
+\author{Original manuscript: Aabir Fauzan\\
+\small Working edition prepared for Christopher D. Long}
+\date{23 September 2026\\\small Source manuscript dated 17 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This document reconstructs and expands the argument in Aabir Fauzan's
+\emph{$\zeta(5)$ is irrational}, using the supplied 32-page PDF as the
+mathematical source. It preserves the determinant, rational normalization,
+comparison measure, and numerical constants. The local functional is given
+an explicit domain, bounded division and compatibility are proved, the
+residue-class distribution identity is expanded, and the inner determinant
+weights are checked by a complete source--row case analysis. All finite data
+in the potential and prime-sum certificates are supplied, together with an
+independently executed exact-arithmetic verifier. Stable declarations,
+external-theorem interfaces, and an autonomous formalization ledger are
+included. This is a mathematical working edition, not a completed Lean
+formalization or an author-approved revision. The original mathematical
+claims remain attributed to Fauzan; numerical experiments reported in the
+supplied audits are not used as proofs.
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{Purpose, conventions, and the main targets}
+\label{sec:overview}
+
+\subsection{Source and editorial scope}
+The source is the uploaded file \texttt{ZETA5\_IS\_IRRATIONAL.pdf}, by Aabir
+Fauzan, dated 17 September 2026, 32 pages. Its SHA-256 digest is
+\begin{center}\small\ttfamily
+\detokenize{a42c05ccc46b9a7c36428913453c4617202c59109713ba20f464ab9ec640d0da}.
+\end{center}
+The original source is cited as \cite{Fauzan}. No original publisher \LaTeX{} source is assumed. Source theorem numbers
+are stated in the titles or surrounding text; the numbering in this working
+edition is independent. Authorial attribution is not transferred by this
+reconstruction.
+
+Two distinctions are essential. First, the $+$ after the large parenthesis
+in source (5.9) is a \emph{subscript denoting the positive part}. The
+indicator which follows \emph{multiplies} that expression. The PDF does not
+contain an added indicator. The earlier suggestion to delete an additive
+indicator was a reading error, not an error in the source. We use an
+unambiguous piecewise definition in \eqref{eq:douter}.
+
+Second, $K\ge200M^2$ is an \emph{admissibility} condition for the explicit
+normalization, not an effective threshold for its asymptotic decay. For
+$M=200$ it says $n\ge200000$ when $K=40n$; the decay assertions may require
+a larger, unspecified threshold. For $M=100000$ the admissibility threshold
+is $n\ge50000000000$.
+
+\subsection{Basic conventions and external inputs}
+Let
+\[
+ \xi=\sum_{m=1}^{\infty}\frac1{m^5}=\zeta(5),\qquad
+ \alpha=\frac3{40},\quad \lambda=\frac{37}{40},\quad
+ H=\lambda+3\alpha=\frac{23}{20}.
+\]
+The series definition is a convenient real-valued formalization target.
+The identification with the real value of the analytically continued zeta
+function must be proved if the latter is used for the public endpoint.
+Bernoulli numbers have convention $B_1=-1/2$; the standard identities used below are collected in \cite{DLMF}. An empty product is $1$, an
+empty sum is $0$, and $u_+=\max(u,0)$ for real $u$.
+
+All additive valuations are normalized by $v_p(p)=1$ and $v_p(0)=+\infty$.
+For $A\in\Qp[X]$, $v_p^{\mathrm G}(A)$ is the minimum coefficient
+valuation, with the same convention at zero. Half-integer weight
+inequalities can be represented in Lean by multiplying every inequality
+by two, rather than by changing the value group.
+
+The following standard inputs are used with their exact conventional
+hypotheses: Bernoulli reflection, difference, and multiplication identities;
+von Staudt--Clausen; Euler's even-zeta formula; Hermite's Hurwitz-zeta
+integral; the prime number theorem in the form
+\begin{equation}\label{eq:pnt}
+ \vartheta(T):=\sum_{p\le T}\log p,\qquad \vartheta(T)/T\longrightarrow1;
+\end{equation}
+and standard finite-dimensional linear algebra, complete valued-field
+analysis, and measure/integration results. Their needed interfaces are
+listed in Appendix~\ref{app:lean}. No assertion is made here that a
+particular current Mathlib declaration already supplies any interface.
+The Gaussian energy identity and determinant integral used below are
+proved here rather than treated as unnamed external results.
+
+\begin{theorem}[Main polynomial target; source Theorem 2.1]
+\label{thm:polynomialtarget}
+For integers $M\ge40$ and $K\in40\Z_{>0}$ satisfying $K\ge200M^2$, the
+explicit polynomial $Q_{K,M}$ defined in Sections~\ref{sec:construction}
+and~\ref{sec:normalization} belongs to $\Z[X]$, has degree
+$h=37K/40$, and satisfies $Q_{K,M}(\xi)>0$. There exist integers
+$n_{200}\ge200000$ and $n_{100000}\ge50000000000$ such that
+\begin{align}
+ 0<Q_{40n,200}(\xi)&<\exp(-139n^2/5) &&(n\ge n_{200}),\label{eq:decay200}\\
+ 0<Q_{40n,100000}(\xi)&<\exp(-7907n^2/100)
+ &&(n\ge n_{100000}).\label{eq:decaylarge}
+\end{align}
+\gid{Zeta5.polynomial_estimates}
+\end{theorem}
+
+\begin{lemma}[Integer-polynomial irrationality criterion]
+\label{lem:criterion}
+Let $x\in\R$, $d,c>0$, and let $P_n\in\Z[X]$ for all sufficiently large
+positive integers $n$. Suppose $\deg P_n\le dn$ and
+$0<P_n(x)<\exp(-cn^2)$. Then $x$ is irrational.
+\gid{Zeta5.irrational_of_integer_polynomials}
+\end{lemma}
+\begin{proof}
+If $x=a/b$ with $a\in\Z$ and $b\in\Z_{>0}$, let $D_n$ be an integer
+degree bound with $D_n\le dn$. The evaluation identity
+\[
+ b^{D_n}P_n(a/b)=\sum_{j=0}^{D_n}[X^j]P_n\,a^j b^{D_n-j}
+\]
+shows this is an integer. It is positive and smaller than
+$\exp(dn\log b-cn^2)$, which tends to zero. Eventually it is a positive
+integer less than one, a contradiction. Equivalently use
+$D_n=\deg P_n$, since positivity excludes the zero polynomial.
+\end{proof}
+
+\begin{theorem}[Fauzan's irrationality target; source Theorem 1.1]
+\label{thm:main}
+The real number $\zeta(5)$ is irrational.
+\gid{Zeta5.zeta_five_irrational}
+\end{theorem}
+\begin{proof}
+Apply Theorem~\ref{thm:polynomialtarget} and
+Lemma~\ref{lem:criterion} with $d=37$ and $c=139/5$.
+The proof of the polynomial target is completed in Section~\ref{sec:finish}.
+\end{proof}
+
+\begin{corollary}[Optional approximation target; source Corollary 1.2]
+\label{cor:approx}
+There is $b_0\in\Z_{>0}$ such that
+$|\zeta(5)-a/b|>b^{-260}$ for all $a\in\Z$ and all integers $b\ge b_0$.
+\gid{Zeta5.rational_approximation_260}
+\end{corollary}
+This target, proved in Appendix~\ref{app:approx}, is independent of the
+formalization of the main irrationality endpoint: it must not delay that
+endpoint or be silently included among its assumptions.
+
+\section{The functional, determinant, degree, and positivity}
+\label{sec:construction}
+Throughout, choose $n\in\Z_{>0}$ and put
+\begin{equation}\label{eq:parameters}
+ K=40n,\qquad N=3n,\qquad h=37n=K-N.
+\end{equation}
+Define
+\[
+ D_m(t)=\prod_{j=1}^m(t+j^2),\quad D_0=1,\qquad
+ \Hfive j=\sum_{v=1}^j v^{-5},\quad \Hfive0=0.
+\]
+Let $\mathscr R_-$ be the $\Q$-vector space of rational functions in $t$
+whose poles, if any, are simple and lie among $-j^2$, $j\ge1$. A function
+in this space has a unique polynomial part and a unique finite simple
+partial-fraction expansion.
+
+\begin{definition}[The rational functional]
+\label{def:mu}
+The $\Q$-linear map $\mu_X:\mathscr R_-\to\Q[X]$ is defined by
+\begin{align}
+ \mu_X(t^e)&=\frac{(-1)^e B_{2e+2}(2e+3)(2e+4)(2e+5)}{24}
+ &&(e\ge0),\label{eq:mumom}\\
+ \mu_X\left(\frac1{t+j^2}\right)
+ &=j^4(X-\Hfive j)-\frac14+\frac1{2j}
+ &&(j\ge1).\label{eq:mupole}
+\end{align}
+Its restriction to polynomials is denoted $\mu$.
+\gid{Zeta5.muX}
+\end{definition}
+The output is affine in $X$. The domain is a vector space, not a ring
+closed under unrestricted multiplication: repeated poles are not silently
+allowed.
+
+Set
+\begin{align}
+ G_K(X)&=\left[\mu_X\left(\frac{D_N(t)^6t^{i+j}}{D_K(t)}\right)
+             \right]_{0\le i,j<h},&
+ \Delta_K(X)&=\det G_K(X),\label{eq:G}\\
+ S_K&=\frac{(K!)^{2h}4^{h-1}}
+ {(N!)^{12h}\prod_{i=1}^{h-1}((2i)!)^2},&F_K&=S_K\Delta_K.
+ \label{eq:scalar}
+\end{align}
+After cancelling $D_N$, the rational input is $W(t)t^{i+j}/\tailD(t)$,
+where $W=D_N^5$ and $\tailD=D_K/D_N$. Its $h$ possible poles are distinct,
+so Definition~\ref{def:mu} applies. Section~\ref{sec:normalization} defines
+a positive rational $m_{K,M}$ and
+\begin{equation}\label{eq:Qdef}
+ Q_{K,M}=m_{K,M}F_K.
+\end{equation}
+
+\begin{proposition}[Exact degree; source (2.9)]
+\label{prop:degree}
+The polynomial $\Delta_K$ has degree $h$, and
+\begin{equation}\label{eq:leading}
+ [X^h]\Delta_K=(-1)^{h(h-1)/2}
+       \prod_{j=N+1}^{K}j^4D_N(-j^2)^5\ne0.
+\end{equation}
+Every nonzero scalar multiple, including $F_K$ and $Q_{K,M}$ when defined,
+has the same degree.
+\gid{Zeta5.determinant_degree}
+\end{proposition}
+\begin{proof}
+Write $s_j=-j^2$, $N<j\le K$, and $V_{ij}=s_j^i$. Extracting the
+coefficient of $X$ from each entry gives
+\[
+ [X]G_K=V\diag\left(\frac{j^4D_N(s_j)^5}{\tailD'(s_j)}\right)V^{\mathsf T}.
+\]
+The coefficient of $X^h$ in a determinant of affine entries is the
+determinant of this coefficient matrix. Since
+\[
+ \det(V)^2=\prod_{j<k}(s_k-s_j)^2,\qquad
+ \prod_j\tailD'(s_j)=(-1)^{h(h-1)/2}\prod_{j<k}(s_k-s_j)^2,
+\]
+the Vandermonde factors cancel and give \eqref{eq:leading}. All remaining
+factors are nonzero. The degree is at most $h$ by multilinearity, and hence
+is exactly $h$.
+\end{proof}
+
+\begin{proposition}[Positive moment representation; source Proposition 2.2]
+\label{prop:moments}
+Put
+\begin{equation}\label{eq:weight}
+ w(y)=\frac{(2\pi)^4y^5}{12}\sum_{\ell=1}^{\infty}\ell^4e^{-2\pi\ell y}
+ \qquad(y>0).
+\end{equation}
+For every $R\in\mathscr R_-$,
+\begin{equation}\label{eq:momentrep}
+ \mu_{\xi}(R)=\int_0^\infty R(y^2)w(y)\,dy.
+\end{equation}
+The integral is absolutely convergent. The matrix $G_K(\xi)$ is real
+symmetric positive definite; in particular $\Delta_K(\xi)>0$.
+\gid{Zeta5.positive_moment_representation}
+\end{proposition}
+\begin{proof}
+The weight is positive. The identity
+$\sum_{\ell\ge1}\ell^4q^\ell=q(1+11q+11q^2+q^3)/(1-q)^5$ shows that
+$w(y)\to1/\pi$ as $y\downarrow0$ and
+$w(y)=O((1+y)^5e^{-2\pi y})$ as $y\to\infty$. Thus each polynomial or
+permitted pole term is absolutely integrable; the same holds for their
+finite sums.
+
+For $e\ge0$, monotone convergence and the gamma integral give
+\[
+ \int_0^\infty y^{2e}w(y)\,dy
+ =\frac{(2e+5)!}{12(2\pi)^{2e+2}}\zeta(2e+2),
+\]
+which is \eqref{eq:mumom} by Euler's formula.
+
+For $a>0$, let $f(y)=(e^{2\pi y}-1)^{-1}$. Termwise differentiation on
