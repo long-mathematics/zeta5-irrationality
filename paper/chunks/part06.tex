@@ -1,0 +1,300 @@
+\]
+It follows by scaling the unit circle and integrating the power series
+for $\log(1-z)$ inside its disk; the boundary case follows from the
+integrability of $\log|2\sin(\theta/2)|$. This is also the standard
+circle-potential formula \cite{Saff}. In particular
+$I(\omega_i)=\log\varepsilon$.
+
+A unit arcsine measure on an interval of length $L$ assigns at most
+$4\sqrt{2r}/(\pi\sqrt L)$ to an interval of radius $r$. To see a
+sufficient bound, the maximum mass of an interval of fixed length occurs
+at an endpoint of the supporting interval; its mass is
+$2\arcsin\sqrt{\min(2r/L,1)}/\pi$, and
+$\arcsin u\le2u$ for $0\le u\le1$. Layer-cake integration then gives
+\[
+ \int U^\rho\,d\omega_i-U^\rho(t_i)
+ \le\sum_{j=1}^{16}\frac{8c_j\sqrt{2\varepsilon}}{\pi\sqrt{b_j-a_j}}
+ \le60\sqrt\varepsilon.
+\]
+The last step uses $b_j-a_j>1/225$, $\sum c_j=\lambda<1$,
+$\pi>3$, and $\sqrt2<3/2$.
+
+The hypotheses of Lemma~\ref{lem:zeroenergy} need checking. The positive
+measure $\eta=\sigma+\rho$ has compact support. The positive part of the
+logarithmic kernel is bounded on that support. Circle potentials are
+bounded below by $\log\varepsilon$. For an arcsine measure on $[a,b]$,
+its potential at a complex point $z$ is at least its potential at
+$\operatorname{Re}z$, because $|z-u|\ge|\operatorname{Re}z-u|$.
+The real arcsine potential is bounded below by $\log((b-a)/4)$.
+Consequently the negative logarithmic integral of $\eta$ is uniformly
+bounded at points of its support, and Tonelli gives
+$\iint|\log|z-w||\,d\eta(z)d\eta(w)<\infty$.
+Since $|\sigma-\rho|\le\eta$ and both measures have mass $\lambda$,
+Lemma~\ref{lem:zeroenergy} applies to $\sigma-\rho$.
+
+Applying the circle-average identity successively yields
+\[
+ \iint\log|z-w|\,d\omega_i(z)d\omega_j(w)
+ \ge\log\max(|t_i-t_j|,\varepsilon)\ge\log|t_i-t_j|.
+\]
+Therefore
+$K^2I(\sigma)\ge2\sum_{i<j}\log|t_i-t_j|+h\log\varepsilon$.
+Expanding $I(\sigma-\rho)\le0$, bounding the mixed terms by the
+arcsine error, and applying \eqref{eq:potentialbound} gives exactly
+\eqref{eq:configuration}.
+\end{proof}
+
+A uniform configuration bound alone cannot be integrated on an unbounded
+domain. The next step explicitly leaves an integrable tail.
+
+\begin{lemma}[Retaining confinement]
+\label{lem:confinement}
+For $K\ge2$ and $t\ge0$,
+\[
+ 2U^\rho(t)-V(t)+\sqrt t/K\le M_0+\sqrt2/K.
+\]
+Consequently
+\begin{equation}\label{eq:confinedconfiguration}
+\begin{split}
+ 2\sum_{i<j}\log|t_i-t_j|-K\sum_iV(t_i)+\sum_i\sqrt{t_i}
+ \le{}&(\lambda M_0-I(\rho))K^2\\
+ &+(120+\sqrt2)h+2h\log K.
+\end{split}
+\end{equation}
+\gid{Zeta5.Analysis.confined_configuration_bound}
+\end{lemma}
+\begin{proof}
+For $t\le2$ use \eqref{eq:potentialbound}. For $t\ge2$, positivity and
+support of $\rho$ imply $U^\rho(t)\le\lambda\log t$. Also
+$\log(t+u^2)\le\log t+u^2/t$. Thus
+\begin{equation}\label{eq:fieldtail}
+ 2U^\rho(t)-V(t)
+ \le\frac{13}{10}\log t+\frac{2\alpha^3}{t}-2\pi\sqrt t.
+\end{equation}
+After adding $\sqrt t/K$, this right side is decreasing for $t\ge2$
+and is less than $M_0$ at $2$. Direct differentiation and the elementary
+bounds $\log2<7/10$, $\pi>3$, $\sqrt2>7/5$ suffice. Apply the proof of
+Lemma~\ref{lem:regularization} to the field $V(t)-\sqrt t/K$, using
+this bound and $\varepsilon=K^{-2}$. Since $h=\lambda K$, the
+regularization error becomes $120h$ and the self-energy term becomes
+$2h\log K$, which gives \eqref{eq:confinedconfiguration}.
+\end{proof}
+
+\subsection{The determinant integral and all scaling factors}
+The finite determinant expansion and Fubini give
+\begin{equation}\label{eq:Andreief}
+ \Delta_K(\xi)=\frac1{h!}\int_{(0,\infty)^h}
+ \prod_{i<j}(y_i^2-y_j^2)^2
+ \prod_{i=1}^h\frac{D_N(y_i^2)^6}{D_K(y_i^2)}w(y_i)\,dy_i.
+\end{equation}
+To prove this identity without importing a named determinant integration
+theorem, expand both Vandermonde determinants. The $h!$ choices of one
+permutation give identical moment-determinant expansions after relabeling
+integration variables. Every separated monomial integral is absolutely
+convergent by the exponential decay of $w$, which justifies Fubini and
+the finite rearrangements. Thus \eqref{eq:Andreief} is the required
+instance of Andr\'eief's identity, with all its integrability hypotheses.
+\gid{Zeta5.Analysis.gram_determinant_integral}
+
+The explicit weight bound
+\begin{equation}\label{eq:weightupper}
+ w(y)\le8192(1+y)^5e^{-2\pi y}\qquad(y>0)
+\end{equation}
+follows from the rational generating function for $\sum\ell^4q^\ell$
+and $1-e^{-u}\ge u/(1+u)$. Indeed these give
+$w(y)\le\pi^{-1}(1+2\pi y)^5e^{-2\pi y}$, and $\pi<4$ supplies
+$32\pi^4<8192$.
+
+For $1\le m\le K$ and $t\ge0$, monotonicity gives
+\begin{equation}\label{eq:riemannlog}
+ 0\le\sum_{j=1}^m\log\bigl(t+(j/K)^2\bigr)
+    -K\int_0^{m/K}\log(t+u^2)\,du\le2\log K+2.
+\end{equation}
+For $t>0$, differentiating the difference in $t$ gives a nonpositive
+quantity because $u\mapsto(t+u^2)^{-1}$ is decreasing. At $t=0$, the
+upper bound follows from
+$\log(m!)\le m\log m-m+\log m+1$. The continuous limit at zero
+justifies including that endpoint.
+
+In \eqref{eq:Andreief} set $y_i=K\sqrt{t_i}$. The separate powers of
+$K$, before the Riemann-sum error, are
+\[
+\begin{array}{rl}
+ K^{2h(h-1)}&\text{from the Vandermonde},\\
+ K^{(12N-2K)h}&\text{from }D_N^6/D_K,\\
+ K^{6h}&\text{from the weight and Jacobian}.
+\end{array}
+\]
+The numerator error in \eqref{eq:riemannlog} adds at most
+$K^{12h}e^{12h}$; the denominator uses the lower Riemann-sum bound.
+Consequently
+\begin{equation}\label{eq:scaledgram}
+\begin{split}
+ \Delta_K(\xi)\le{}&
+ \frac{K^{2h(h+6N-K)+16h}(4096e^{12})^h}{h!}\\
+ &\mathrel{}\times\int_{(0,\infty)^h}\prod_{i<j}(t_i-t_j)^2
+       \prod_i e^{-KV(t_i)}t_i^{-1/2}(1+\sqrt{t_i})^5\,dt_i.
+\end{split}
+\end{equation}
+There is no appeal to a uniform-bound-times-infinite-volume argument:
+use \eqref{eq:confinedconfiguration} and retain
+$\prod_i e^{-\sqrt{t_i}}$ in the integrand. Since
+\[
+ \int_0^\infty t^{-1/2}(1+\sqrt t)^5e^{-\sqrt t}\,dt
+ =2\sum_{j=0}^5\binom5j j!=652,
+\]
+we obtain
+\begin{equation}\label{eq:logdelta}
+ \log\Delta_K(\xi)
+ \le2h(h+6N-K)\log K+(\lambda M_0-I(\rho))K^2
+                         +18h\log K+160h.
+\end{equation}
+The linear constant bounds
+$\log4096+12+\log652+120+\sqrt2$ from above, and $h!\ge1$.
+
+Elementary factorial bounds and summation give
+\begin{align*}
+ m\log m-m+1&\le\log(m!)\le m\log m-m+\log m+2,\\
+ -2\sum_{i=1}^{h-1}\log((2i)!)
+ &\le-2h^2\log(2h)+3h^2+4h\log(2h).
+\end{align*}
+Using \eqref{eq:scalar} yields
+\begin{equation}\label{eq:logscalar}
+ \log S_K\le(2\lambda-12\alpha\lambda-2\lambda^2)K^2\log K
+                +C_*K^2+6h\log K+6h.
+\end{equation}
+The leading coefficient of $K^2\log K$ in \eqref{eq:logdelta} is
+$2\lambda(\lambda+6\alpha-1)$, exactly the negative of the coefficient
+in \eqref{eq:logscalar}.
+
+\begin{proposition}[Real bound; source Proposition 6.3]
+\label{prop:realbound}
+For every $K\in40\Z_{>0}$,
+\begin{equation}\label{eq:realbound}
+ F_K(\xi)>0,\qquad
+ \log F_K(\xi)\le UK^2+24K\log K+200K.
+\end{equation}
+\gid{Zeta5.real_determinant_bound}
+\end{proposition}
+\begin{proof}
+Positivity is Proposition~\ref{prop:moments} and $S_K>0$. Add
+\eqref{eq:logdelta} and \eqref{eq:logscalar}, cancel the leading
+logarithmic terms, and use \eqref{eq:energyconstant} and $h\le K$.
+Enlarging the remaining linear coefficient to $200K$ gives the stated
+bound.
+\end{proof}
+
+\section{Completion of the polynomial estimates}
+\label{sec:finish}
+\begin{proof}[Proof of Theorem~\ref{thm:polynomialtarget}]
+Proposition~\ref{prop:integrality} proves integrality for every
+admissible pair. Proposition~\ref{prop:degree} proves degree $h$.
+Proposition~\ref{prop:moments} and positivity of both rational
+normalizations prove positive evaluation.
+
+For fixed $M\in40\Z_{>0}$, \eqref{eq:AMbound} and
+Proposition~\ref{prop:realbound} imply
+\begin{equation}\label{eq:finalasymptotic}
+ \limsup_{\substack{K\to\infty\\40\mid K}}
+        K^{-2}\log Q_{K,M}(\xi)\le A_M+U.
+\end{equation}
+Appendix~\ref{app:arithmetic} proves, with exact positive margins,
+\[
+ -1600(A_{200}+U)>\frac{139}{5},\qquad
+ -1600(A_{100000}+U)>\frac{7907}{100}.
+\]
+Choose a positive slack strictly smaller than each margin after division
+by $1600$. The definition of the limsup bound then gives a threshold
+for which the corresponding strict inequality holds for every allowed
+$K$. Increase that threshold to satisfy $K\ge200M^2$, and put $K=40n$.
+Since $K^2=1600n^2$, these are exactly
+\eqref{eq:decay200}--\eqref{eq:decaylarge}. This establishes the theorem
+with existential, not numerically asserted, decay thresholds.
+\end{proof}
+Theorem~\ref{thm:main} now follows from the integer-polynomial criterion.
+No height estimate and no information about rational roots near $\xi$
+are needed for this main endpoint.
+
+\appendix
+\section{The comparison measure and a reproducible finite certificate}
+\label{app:measure}
+\subsection{Rational data and the arcsine formula}
+Let $\omega_{[a,b]}$ be the probability measure on $(a,b)$ with density
+$1/(\pi\sqrt{(t-a)(b-t)})$, and put
+\[
+ \rho=\sum_{j=1}^{16}c_j\omega_{[a_j,b_j]}.
+\]
+Table~\ref{tab:arcsine} specifies the data by integers with common
+denominator $10^{12}$. Exact arithmetic gives
+\[
+ \sum_jc_j=37/40,\qquad
+ 0<a_{16}<\cdots<a_1<b_1<\cdots<b_{16}<2,\qquad
+ b_j-a_j>1/225.
+\]
+\begin{table}[htbp]
+\centering\small
+\caption{The rational arcsine measure (source Table 1).}\label{tab:arcsine}
+\begin{tabular}{rrrr}\toprule
+$j$ & $10^{12}a_j$ & $10^{12}b_j$ & $10^{12}c_j$\\\midrule
+1 & 3906748086 & 8992695531 & 10515596180\\
+2 & 2312248264 & 15340997855 & 29471737793\\
+3 & 1402286665 & 25730180724 & 42934365099\\
+4 & 881725356 & 41909578246 & 58204231966\\
+5 & 578197906 & 65851089563 & 69037621310\\
+6 & 396324613 & 99481037884 & 78873099189\\
+7 & 283911191 & 144325727458 & 84856120711\\
+8 & 212206188 & 201105762729 & 88396082127\\
+9 & 165097686 & 269345996903 & 88303382125\\
+10 & 133347132 & 347089554156 & 85472321255\\
+11 & 111522114 & 430806704415 & 78899184238\\
+12 & 96349355 & 515561896511 & 70353471918\\
+13 & 85815639 & 595448778546 & 58838976615\\
+14 & 78667711 & 664241383483 & 44421321106\\
+15 & 74129565 & 716160577112 & 30462865791\\
+16 & 71741310 & 746637295669 & 5959622577\\
+\bottomrule\end{tabular}
+\end{table}
+The unit arcsine potential, with the present sign convention, is
+\begin{equation}\label{eq:arcsinepotential}
+ U^{\omega_{[a,b]}}(t)=
+ \begin{cases}
+ \log((b-a)/4),&a\le t\le b,\\
+ \displaystyle\log\left(
+ \frac{|t-(a+b)/2|+\sqrt{(t-a)(t-b)}}2\right),&t\notin[a,b].
+ \end{cases}
+\end{equation}
+In particular the square root and absolute value are inside the
+logarithm as displayed. To derive it, put $m=(a+b)/2$, $r=(b-a)/2$,
+and substitute $u=m+r\cos\theta$. For $t>b$, differentiation of the
+integral gives $((t-a)(t-b))^{-1/2}$; integrate and use
+$U(t)-\log t\to0$ at infinity. Reflection treats $t<a$. For
+$t=m+r\cos\phi$ in the interval use
+$\cos\phi-\cos\theta=-2\sin((\phi+\theta)/2)\sin((\phi-\theta)/2)$.
+The integral of the logarithms gives $\log(r/2)$, and continuity includes
+the endpoints.
+
+With $S_j=\sum_{i\le j}c_i$ and $S_0=0$, nesting gives
+\begin{equation}\label{eq:energyexplicit}
+ I(\rho)=\sum_{j=1}^{16}(S_j^2-S_{j-1}^2)
+                            \log\frac{b_j-a_j}{4}.
+\end{equation}
+Indeed, the potential of component $j$ is constant on every earlier
+support. Group its self-energy and both orders of its mixed energies;
+the coefficient is $c_j^2+2c_jS_{j-1}=S_j^2-S_{j-1}^2$.
+
+\subsection{Elementary interval arithmetic and its soundness contract}
+For $1\le x\le2$, $z=(x-1)/(x+1)$, and $m\ge1$,
+\begin{equation}\label{eq:logcertificate}
+ 0\le\log x-2\sum_{k=0}^{m-1}\frac{z^{2k+1}}{2k+1}
+ \le\frac{2z^{2m+1}}{(2m+1)(1-z^2)}.
+\end{equation}
+For general positive $x$, write $x=2^e r$ with $1\le r<2$ and use
+$\log x=e\log2+\log r$. For $0\le z\le1/2$,
+\begin{equation}\label{eq:atancertificate}
+ \left|\arctan z-\sum_{k=0}^{m-1}(-1)^k\frac{z^{2k+1}}{2k+1}\right|
+ \le\frac{z^{2m+1}}{2m+1}.
+\end{equation}
+The reductions are
+\[
+ \arctan x=\frac\pi2-\arctan(1/x)\quad(x>1),\qquad
+ \arctan x=2\arctan\frac{x}{1+\sqrt{1+x^2}}\quad(0\le x\le1),
