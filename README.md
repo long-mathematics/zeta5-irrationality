@@ -3,6 +3,9 @@
 This repository is an autonomous Lean formalization project for the proof in
 Aabir Fauzan, **“ζ(5) is irrational”** (17 September 2026).
 
+**[Read the original paper on Zenodo](https://zenodo.org/records/22826419)**
+— Aabir Fauzan, DOI: `10.5281/zenodo.22826419`.
+
 The mathematical source claims the first proof that the individual value
 `ζ(5)` is irrational. Because of the significance of that claim, this
 repository is organized around reproducibility, explicit dependency tracking,
@@ -37,6 +40,7 @@ See [`FORMALIZATION_STATUS.md`](FORMALIZATION_STATUS.md) for the live status and
 
 ## Mathematical source and working edition
 
+- [Original paper by Aabir Fauzan on Zenodo](https://zenodo.org/records/22826419)
 - [Read the compiled working edition (PDF, 41 pages)](paper/zeta5_formalization_draft.pdf)
 - [Expanded LaTeX working edition](paper/zeta5_formalization_draft.tex)
 - Rebuild the PDF locally with `make pdf` (requires LaTeX and `latexmk`)
