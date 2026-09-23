@@ -36,8 +36,9 @@ See [`FORMALIZATION_STATUS.md`](FORMALIZATION_STATUS.md) for the live status and
 
 ## Mathematical source and working edition
 
+- [Read the compiled working edition (PDF, 41 pages)](paper/zeta5_formalization_draft.pdf)
 - [Expanded LaTeX working edition](paper/zeta5_formalization_draft.tex)
-- Compile the working PDF locally with `make pdf`
+- Rebuild the PDF locally with `make pdf` (requires LaTeX and `latexmk`)
 - [Repair and audit-provenance log](REPAIRS.md)
 - [Formalization dependency graph](formalization/dependency_graph.md)
 - [Declaration ledger](formalization/declarations.csv)
@@ -47,6 +48,11 @@ The LaTeX source in this repository is a reconstructed and expanded working
 edition prepared for formalization. It is **not** Fauzan's original LaTeX and
 is **not** an author-approved revision. The underlying mathematical claims
 remain attributed to Aabir Fauzan.
+
+The compiled PDF is the working edition used for this ongoing Lean
+formalization attempt. It presents the mathematical argument and proof
+obligations; it is not evidence that the Lean irrationality theorem has been
+completed. See the [live formalization status](FORMALIZATION_STATUS.md).
 
 The working edition records two important clarifications established during
 audit:
