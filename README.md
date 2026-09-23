@@ -79,7 +79,7 @@ python3 certificates/verify.py
 
 The checked package covers all 684 cells of the potential certificate, all
 143 symbolic inner pieces, all 11 outer affine pieces, the exact rational
-integrals, energy/scalar constants, the final rational margins, and interval-certificate soundness. Acceptance
+integrals, energy/scalar constants, and the final rational margins. Acceptance
 uses exact rational arithmetic and outward-rounded dyadic interval arithmetic,
 not floating-point comparisons.
 
