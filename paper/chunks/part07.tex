@@ -1,0 +1,300 @@
+\]
+and $\pi=16\arctan(1/5)-4\arctan(1/239)$.
+Equation~\eqref{eq:logcertificate} follows by integrating the geometric
+series for $2/(1-z^2)$ and bounding its positive tail.
+Equation~\eqref{eq:atancertificate} is the alternating-series estimate;
+the reductions follow from the tangent addition formula with their
+stated ranges fixing the branch. The Machin identity follows by the
+same addition formula and the bounds placing its value in $(3,4)$.
+
+The source uses $m=64$ for logarithms, $m=80$ for arctangents, and
+square-root brackets of width $2^{-144}$. The independent checker
+retains the same series lengths and uses outward-rounded dyadic
+arithmetic at \emph{192 bits}, including 192-bit square-root brackets.
+This changes the implementation precision, not any mathematical constant.
+
+Here is the finite checker contract, intended to be proved once in
+Lean. An interval $(l,u)$ represents $[l/2^{192},u/2^{192}]$, with
+$l,u\in\Z$ and $l\le u$. Addition and subtraction use endpoint arithmetic;
+multiplication encloses the four endpoint products, rounded outward.
+Reciprocal reverses the endpoints and is permitted only when zero is
+excluded. A nonnegative square root is enclosed by integers whose
+squares bracket the appropriately scaled rational endpoint. Each series
+is evaluated using these interval operations and enlarged by the
+explicit remainder bound above. Monotonicity allows logarithms and
+arctangents to be evaluated separately at the two rational endpoints.
+Induction over these operations proves enclosure soundness. All branch
+choices must be justified by exact endpoint comparisons.
+
+The supplied \path{certificates/interval.py} implements these rules
+using integer arithmetic and rational numbers. Decimal output is used
+only for display. The complete accepted interval endpoints are stored
+in \path{certificates/verification_results.json}. Executing Python is
+not a kernel proof; a Lean checker must prove this soundness contract
+and replay the finite data or an equivalent exact computation.
+\gid{Zeta5.Certificate.interval_soundness}
+
+\subsection{The half-line potential inequality}
+For $t>0$, direct integration in \eqref{eq:Vdef} gives
+\begin{equation}\label{eq:Vexplicit}
+\begin{split}
+ V(t)={}&\log(1+t)-6\alpha\log(t+\alpha^2)-2+12\alpha\\
+ &+2\sqrt t\left(\pi+\arctan\frac1{\sqrt t}
+                         -6\arctan\frac\alpha{\sqrt t}\right).
+\end{split}
+\end{equation}
+At zero, $V(0)=-12\alpha\log\alpha-2+12\alpha$. If
+$\Phi(y)=V(y^2)$, then
+\[
+ \Phi'(y)=2(\pi+\arctan(1/y)-6\arctan(\alpha/y)),\qquad
+ \Phi''(y)=-\frac2{1+y^2}+\frac{12\alpha}{\alpha^2+y^2}.
+\]
+The second derivative changes sign once, at $y^2=711/880$.
+Moreover $\Phi'(0+)=-3\pi$ and $\Phi'(+\infty)=2\pi$.
+It follows that $V$ has exactly one minimum: $\Phi'$ first increases
+from a negative value and then decreases to a strictly positive limit.
+Let
+\[
+ q_- =\frac{59205077}{10^{10}},\qquad
+ q_+ =\frac{59205079}{10^{10}}.
+\]
+The interval evaluation gives
+$\Phi'(\sqrt{q_-})<0<\Phi'(\sqrt{q_+})$, so the minimizing $t$ belongs
+to $[q_-,q_+]$. On that interval a lower bound is
+\begin{equation}\label{eq:Vstar}
+\begin{split}
+ V_*={}&\log(1+q_-)-6\alpha\log(q_++\alpha^2)-2+12\alpha\\
+ &+2\sqrt{q_+}\left(\pi+\arctan\frac1{\sqrt{q_+}}
+                         -6\arctan\frac\alpha{\sqrt{q_-}}\right).
+\end{split}
+\end{equation}
+The parenthesis is negative, as the same interval computation verifies.
+Bounding each logarithm and arctangent in its monotone direction and
+using this negative lower bound justifies the factor $\sqrt{q_+}$.
+In particular $V_*$ is a lower bound for the global minimum of $V$.
+
+The nested-support potential $U^\rho$ is nonincreasing up to $a_1$,
+constant on $[a_1,b_1]$, and nondecreasing thereafter. Thus its maximum
+on any interval is at an endpoint. For $[l,r]\subseteq[0,2]$ define
+\begin{equation}\label{eq:Bcell}
+ B(l,r)=2\max(U^\rho(l),U^\rho(r))-
+ \begin{cases}
+ V(r),&r\le q_-,\\
+ V(l),&l\ge q_+,\\
+ V_*,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+The preceding monotonicity proves
+$2U^\rho(t)-V(t)\le B(l,r)$ for $l\le t\le r$.
+
+Define the ordered rational endpoints
+\[
+ A_0=0,\quad A_j=a_{17-j}\ (1\le j\le16),\quad
+ A_{17}=q_-,\ A_{18}=q_+,\quad
+ A_{18+j}=b_j\ (1\le j\le16),\quad A_{35}=2.
+\]
+A row $(j,d,k)$ in Table~\ref{tab:partition} denotes the closed cell
+\begin{equation}\label{eq:cell}
+ \left[A_j+(A_{j+1}-A_j)\frac{k}{2^d},
+       A_j+(A_{j+1}-A_j)\frac{k+1}{2^d}\right].
+\end{equation}
+Every integer in a displayed inclusive range is used. The exact endpoint
+checks show that the 684 resulting cells cover $[0,2]$ in order, with
+adjacent endpoints equal and with no overlap of interiors.
+\begingroup\small
+\begin{longtable}{ccl}
+\caption{The rational partition (source Table 2).}\label{tab:partition}\\
+\toprule $j$ & $d$ & $k$ (inclusive ranges)\\\midrule\endfirsthead
+\multicolumn{3}{c}{Table \thetable\ continued}\\
+\toprule $j$ & $d$ & $k$ (inclusive ranges)\\\midrule\endhead
+\midrule\multicolumn{3}{r}{Continued on the next page}\\\endfoot
+\bottomrule\endlastfoot
+0 & 1 & $0$\\
+0 & 2 & $2,3$\\
+1 & 0 & $0$\\
+2 & 0 & $0$\\
+3 & 0 & $0$\\
+4 & 0 & $0$\\
+5 & 0 & $0$\\
+6 & 0 & $0$\\
+7 & 0 & $0$\\
+8 & 0 & $0$\\
+9 & 1 & $0,1$\\
+10 & 1 & $0,1$\\
+11 & 1 & $0,1$\\
+12 & 1 & $0$\\
+12 & 2 & $2,3$\\
+13 & 2 & $0,\ldots,3$\\
+14 & 2 & $0,\ldots,3$\\
+15 & 1 & $0$\\
+15 & 2 & $2,3$\\
+16 & 0 & $0$\\
+17 & 0 & $0$\\
+18 & 0 & $0$\\
+19 & 1 & $1$\\
+19 & 3 & $0,\quad 2,3$\\
+19 & 4 & $2,3$\\
+20 & 2 & $3$\\
+20 & 3 & $4,5$\\
+20 & 4 & $0,1,\quad 6,7$\\
+20 & 5 & $4,\ldots,11$\\
+21 & 2 & $3$\\
+21 & 3 & $5$\\
+21 & 4 & $0,\quad 7,\ldots,9$\\
+21 & 5 & $2,\ldots,4,\quad 10,\ldots,13$\\
+21 & 6 & $10,\ldots,19$\\
+22 & 3 & $5,\ldots,7$\\
+22 & 4 & $0,\quad 8,9$\\
+22 & 5 & $2,3,\quad 12,\ldots,15$\\
+22 & 6 & $8,\ldots,23$\\
+23 & 3 & $6,7$\\
+23 & 4 & $9,\ldots,11$\\
+23 & 5 & $0,\ldots,2,\quad 14,\ldots,17$\\
+23 & 6 & $6,\ldots,13,\quad 19,\ldots,27$\\
+23 & 7 & $28,\ldots,37$\\
+24 & 3 & $6,7$\\
+24 & 4 & $10,11$\\
+24 & 5 & $0,\ldots,2,\quad 15,\ldots,19$\\
+24 & 6 & $6,\ldots,11,\quad 22,\ldots,29$\\
+24 & 7 & $24,\ldots,43$\\
+25 & 3 & $7$\\
+25 & 4 & $10,\ldots,13$\\
+25 & 5 & $0,\ldots,2,\quad 16,\ldots,19$\\
+25 & 6 & $6,\ldots,11,\quad 24,\ldots,31$\\
+25 & 7 & $24,\ldots,47$\\
+26 & 3 & $7$\\
+26 & 4 & $11,\ldots,13$\\
+26 & 5 & $0,\ldots,2,\quad 17,\ldots,21$\\
+26 & 6 & $6,\ldots,11,\quad 25,\ldots,33$\\
+26 & 7 & $24,\ldots,49$\\
+27 & 4 & $11,\ldots,15$\\
+27 & 5 & $0,\ldots,2,\quad 17,\ldots,21$\\
+27 & 6 & $6,\ldots,11,\quad 26,\ldots,33$\\
+27 & 7 & $24,\ldots,51$\\
+28 & 4 & $12,\ldots,15$\\
+28 & 5 & $0,\ldots,2,\quad 18,\ldots,23$\\
+28 & 6 & $6,\ldots,11,\quad 27,\ldots,35$\\
+28 & 7 & $24,\ldots,53$\\
+29 & 4 & $13,\ldots,15$\\
+29 & 5 & $0,\ldots,2,\quad 19,\ldots,25$\\
+29 & 6 & $6,\ldots,12,\quad 27,\ldots,37$\\
+29 & 7 & $26,\ldots,53$\\
+30 & 4 & $13,\ldots,15$\\
+30 & 5 & $0,\ldots,2,\quad 20,\ldots,25$\\
+30 & 6 & $6,\ldots,14,\quad 26,\ldots,39$\\
+30 & 7 & $30,\ldots,51$\\
+31 & 4 & $14,15$\\
+31 & 5 & $0,\ldots,2,\quad 20,\ldots,27$\\
+31 & 6 & $6,\ldots,39$\\
+32 & 4 & $15$\\
+32 & 5 & $0,\ldots,4,\quad 19,\ldots,29$\\
+32 & 6 & $10,\ldots,37$\\
+33 & 4 & $0,\quad 15$\\
+33 & 5 & $2,\ldots,29$\\
+34 & 2 & $2,3$\\
+34 & 3 & $3$\\
+34 & 4 & $3,\ldots,5$\\
+34 & 5 & $4,5$\\
+34 & 6 & $5,\ldots,7$\\
+34 & 7 & $6,\ldots,9$\\
+34 & 8 & $7,\ldots,11$\\
+34 & 9 & $5,\ldots,13$\\
+34 & 10 & $0,\ldots,9$\\
+\end{longtable}
+\endgroup
+For every listed cell the outward-rounded computation proves
+\begin{equation}\label{eq:cellcertificate}
+ B(l,r)<-\frac{6645002}{10^6}<-\frac{1329}{200}.
+\end{equation}
+For reproducibility, the largest certified upper endpoint occurred in
+cell $(j,d,k)=(30,6,26)$ and is smaller than
+$-664500268/10^8=-6.64500268$. This is an upper bound on a cell bound,
+not a computation of the actual supremum of $2U^\rho-V$.
+For $t\ge2$, \eqref{eq:fieldtail} is decreasing and is already less than
+$M_0$ at $2$. This proves \eqref{eq:potentialbound} on the entire
+half-line.
+\gid{Zeta5.Certificate.potential_cells}
+
+\subsection{Energy, scalar constant, and the optional norm constant}
+The same interval rules applied to \eqref{eq:energyexplicit} and
+\eqref{eq:Cstar} give
+\begin{align}
+ -\frac{2126593445148}{10^{12}}&<I(\rho)
+                         <-\frac{2126593445147}{10^{12}},\label{eq:energycert}\\
+ \frac{2653035990340}{10^{12}}&<C_*
+                         <\frac{2653035990341}{10^{12}}.\label{eq:Cstarcert}
+\end{align}
+Since $\lambda M_0=-49173/8000$, it follows that
+\[
+ \lambda M_0-I(\rho)+C_*<
+ -\frac{1366995564511}{10^{12}}<-\frac{2733991}{2000000}=U.
+\]
+This completes Proposition~\ref{prop:comparison}.
+For the constant $\kappa$ in \eqref{eq:kappaexplicit} below, the checker
+also proves
+\begin{equation}\label{eq:kappacert}
+ \frac{2773171335773}{200000000000}<\kappa
+ <\frac{6932928339433}{500000000000}<\frac{6933}{500}.
+\end{equation}
+\gid{Zeta5.Certificate.energy_and_norm_constants}
+
+\section{Exact arithmetic integrals and margins}
+\label{app:arithmetic}
+\subsection{A branch-complete calculation of the inner integral}
+For $0\le u<1$, define
+\[
+ d_0(u)=\min(u,1-u),\qquad
+ e(u)=\begin{cases}1,&u\le1/2,\\-1,&u>1/2.\end{cases}
+\]
+For real $x$ and almost every $z\in(0,1/2)$,
+\[
+ \ell(x,z)-2x=e(\{x\})
+                  \bigl(\boldsymbol1_{z<d_0(\{x\})}-2d_0(\{x\})\bigr).
+\]
+The exceptional equality case in $z$ is a singleton. Thus, with $f,g,A,B$
+as in Section~\ref{sec:normalization},
+\begin{align}
+ \int_0^{1/2}B^2&=d_0(g)(1-2d_0(g)),\label{eq:BB}\\
+ \int_0^{1/2}AB&=e(f)e(g)
+  \bigl(\min(d_0(f),d_0(g))-2d_0(f)d_0(g)\bigr).\label{eq:AB}
+\end{align}
+These follow by integrating indicator functions and their product;
+for example the intersection has length $\min(d_0(f),d_0(g))$.
+
+Take the ordered set consisting of $3,20$, and every $x\in(3,20)$ for
+which $cx\in\Z$ for some
+\begin{equation}\label{eq:breakpoints}
+ c\in\{2,2\alpha,2\lambda,2H,4\alpha,2(1-\alpha),2(1+\alpha)\}.
+\end{equation}
+There are exactly 143 open intervals $(t_i,t_{i+1})$. On each, all
+floors, signs, and branches of minima and positive parts are fixed.
+The extra possible crossings $d_0(f)=d_0(g)$ and $\tau=\sigma$ are
+included in \eqref{eq:breakpoints}. The quadratic coefficient in $R$
+cancels because
+\[
+ 2\lambda-12\lambda\alpha+2(H^2-H-\lambda^2)-18\alpha^2+6\alpha=0.
+\]
+Therefore $R(x)=a_ix+b_i$ on each such open interval, and
+\begin{equation}\label{eq:innerpieceintegral}
+ \int_3^{20}R(x)x^{-3}\,dx
+ =\sum_{i=0}^{142}\left[
+ a_i\left(\frac1{t_i}-\frac1{t_{i+1}}\right)
+ +\frac{b_i}{2}\left(\frac1{t_i^2}-\frac1{t_{i+1}^2}\right)\right].
+\end{equation}
+Values at finitely many endpoints do not affect the integrals.
+
+The independent verifier does not merely sample two points and assume
+linearity. It forms exact rational polynomials on each branch, verifies
+every branch inequality at both endpoints, and computes $\Gamma$ from
+its original integral on the strips in $z$ bounded by
+$0,d_0(f),d_0(g),1/2$. It separately forms \eqref{eq:RFQ}--\eqref{eq:Qtail}
+using \eqref{eq:BB}--\eqref{eq:AB}, checks equality of all polynomial
+coefficients, and checks cancellation of degrees greater than one.
+Then it integrates the resulting affine polynomial exactly by
+\eqref{eq:innerpieceintegral}. The 143 coefficient records are included
+in the JSON output. Grouping them by integer unit intervals gives
+Table~\ref{tab:innerintegrals}; its sum is \eqref{eq:innerexact}.
+\gid{Zeta5.Certificate.inner_integral}
+\begin{table}[htbp]\centering\small
+\caption{Inner integral on unit intervals (source Table 3).}\label{tab:innerintegrals}
+\renewcommand{\arraystretch}{1.65}

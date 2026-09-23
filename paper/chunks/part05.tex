@@ -1,0 +1,300 @@
+ 7(1-y)-6\min(\alpha,1-y)-6(1+\alpha-2y)_+
+       +(1+4\alpha-2y)_+,             &1/2<y<1,\\
+ 0,                                  &y>1.
+ \end{cases}
+\end{equation}
+Endpoint values may be assigned arbitrarily for integration. The rank
+correction is
+\begin{equation}\label{eq:douter}
+ d(y)=\begin{cases}
+ \bigl(1+4\alpha-3y-(1+\alpha-3y)_+\bigr)_+,&1/3<y<1/2,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+This is exactly source (5.9), with its \emph{multiplicative} indicator
+written piecewise. In particular
+$\int_{1/3}^{1/2}d(y)\,dy=9/640$.
+
+Resolving \eqref{eq:gammaout} and using the fact that all integer endpoint
+corrections are bounded gives, uniformly for outer primes $p\le K$,
+\begin{align}
+ -\gamma_p^{\mathrm{out}}
+   &=K\bigl(R_0(p/K)-d(p/K)\bigr)+O(1),\label{eq:outergammalimit}\\
+ -v_p(S_K)&=K\left(-2\lambda\floor{1/y}
+                   +\sum_{j=1}^5(2\lambda-jy)_+\right)+O(1).
+ \label{eq:outerscalarlimit}
+\end{align}
+The scalar formula holds throughout $1/3<y\le2\lambda$; $N<p$ and
+$p^2>5K$ in this range. To verify uniformity directly, use
+$u=K(\alpha+1-(\floor{1/y}+1)y)_++O(1)$ and
+$t_p=K\min(\alpha,1-\floor{1/y}y)+u$, then the Lipschitz property of
+minima and positive parts. The rank minimum in \eqref{eq:gammaout}
+is exactly what produces the subtraction of $d$.
+
+Let
+\begin{equation}\label{eq:Iout}
+ I_{\mathrm{out}}=\int_{1/3}^{2\lambda}
+ \left(R_0(y)-d(y)-2\lambda\floor{1/y}
+                   +\sum_{j=1}^5(2\lambda-jy)_+\right)\,dy
+ =\frac{127751}{96000}.
+\end{equation}
+The exact piecewise evaluation is in Appendix~\ref{app:arithmetic}.
+For $1<y<2\lambda$, both residue terms vanish but the factorial scalar
+still contributes; this interval must not be omitted.
+
+\begin{lemma}[Weighted prime-sum consequence of the PNT]
+\label{lem:primesuminterface}
+Let $0<a<b<\infty$, and let $f$ be bounded and piecewise continuous on
+$[a,b]$. Then
+\[
+ \frac1{K^2}\sum_{aK<p\le bK}Kf(p/K)\log p
+       \longrightarrow\int_a^b f(y)\,dy.
+\]
+Consequently, for bounded piecewise continuous $g$ on $[3,M]$,
+\[
+ \frac1{K^2}\sum_{K/M<p\le K/3}p\,g(K/p)\log p
+       \longrightarrow\int_3^M g(x)x^{-3}\,dx.
+\]
+\gid{Zeta5.weighted_prime_sum}
+\end{lemma}
+\begin{proof}
+Equation~\eqref{eq:pnt} implies
+$(\vartheta(vK)-\vartheta(uK))/K\to v-u$ for fixed $0<u<v$.
+This proves the first statement for interval step functions. Upper and
+lower step approximations on a finite partition prove it for bounded
+Riemann-integrable functions, including bounded piecewise continuous
+ones. Bounds on the total measure follow from
+$\vartheta(bK)/K=O(1)$. A value at any one endpoint contributes at most
+$O(\log K/K)$, so endpoint conventions do not matter. For the second
+statement use $f(y)=y g(1/y)$ on $[1/M,1/3]$ and the substitution $x=1/y$.
+\end{proof}
+
+\begin{proposition}[Normalization growth; source Proposition 5.2]
+\label{prop:primegrowth}
+For every fixed $M\ge40$,
+\begin{equation}\label{eq:primegrowth}
+ \limsup_{\substack{K\to\infty\\40\mid K}}
+ K^{-2}\log m_{K,M}
+ \le I_{\mathrm{out}}+\frac{6\lambda}{M}
+                         +\int_3^M R(x)x^{-3}\,dx.
+\end{equation}
+\gid{Zeta5.normalization_growth}
+\end{proposition}
+\begin{proof}
+Taking logarithms of \eqref{eq:mdef} gives
+$\log m_{K,M}=-\sum_{p\le2h}L_p(K,M)\log p$, with signs unchanged.
+For $p\le\sqrt{5K}$ the bound \eqref{eq:Fsmall} contributes at most
+$O(K^{3/2}\log K)=o(K^2)$; the factors $v_p(24)$ involve only $2,3$.
+For $\sqrt{5K}<p\le K/M$ the integer logarithm is one, and the PNT gives
+$6\lambda K^2/M+o(K^2)$.
+
+In the inner range, Lemma~\ref{lem:innerlimit} gives
+$-L_p=pR(K/p)+O_M(1)$. Its total error is bounded by
+$O_M(\vartheta(K))=O_M(K)=o(K^2)$. Apply
+Lemma~\ref{lem:primesuminterface}. The outer estimates
+\eqref{eq:outergammalimit}--\eqref{eq:outerscalarlimit} give
+\eqref{eq:Iout} by the same lemma. All constants depending on $M$ are
+used with $M$ fixed before $K\to\infty$.
+\end{proof}
+
+\subsection{The periodic tail and the two fixed cutoffs}
+For $x\ge3$ write
+\[
+ f=\{x\},\quad g=\{\alpha x\},\quad \tau=\{2Hx\},\quad
+ \sigma=\{2x\},\quad\eta=\{2\lambda x\},
+\]
+and let $A(z)=\ell(x,z)-2x$, $B(z)=\ell(\alpha x,z)-2\alpha x$.
+Expansion of \eqref{eq:Gamma}--\eqref{eq:Rlimit} gives
+\begin{equation}\label{eq:RFQ}
+ R(x)=xF(x)+Q(x),\qquad F(x)=4\lambda+2\lambda f-12\lambda g.
+\end{equation}
+\begin{equation}\label{eq:Qtail}
+\begin{split}
+ Q(x)={}&\frac{\tau(\tau-\sigma)-(\tau-\sigma)_++\eta(1-\eta)}2\\
+ &+9\int_0^{1/2}B(z)^2\,dz-3\int_0^{1/2}A(z)B(z)\,dz.
+\end{split}
+\end{equation}
+Both $A$ and $B$ have integral zero on $(0,1/2)$, and each squared
+integral is at most $1/8$. The mixed integral has absolute value at most
+$1/8$ by Cauchy--Schwarz. The numerator before the division by two in
+\eqref{eq:Qtail} is between $-1/4$ and $1/4$: if $\tau\le\sigma$, its
+first two terms equal $\tau(\tau-\sigma)\in[-1/4,0]$; otherwise they
+are $-(\tau-\sigma)(1-\tau)\in[-1/4,0]$, and
+$\eta(1-\eta)\in[0,1/4]$. Hence
+\begin{equation}\label{eq:Qtailbounds}
+ -\frac12\le Q(x)\le\frac{13}{8}.
+\end{equation}
+An explicit exact verification of the expansion on every finite branch
+used below is supplied with Appendix~\ref{app:arithmetic}.
+
+Define continuous periodic functions
+\begin{align*}
+ \mathcal P(x)&=74g(1-g)-\lambda f(1-f),&
+ \overline{\mathcal P}&=\frac{2923}{240},\\
+ G_0(v)&=v(1-v)(2v-1)/6,&
+ \mathcal C(x)&=(74/\alpha)G_0(g)-\lambda G_0(f).
+\end{align*}
+Off their locally finite breakpoints,
+$\mathcal P'=F+\lambda$ and
+$\mathcal C'=\mathcal P-\overline{\mathcal P}$. They are continuous at
+those breakpoints, so integration by parts over subintervals telescopes
+without jump terms. Since
+$\max_{[0,1]}|G_0|=1/(36\sqrt3)$,
+\[
+ |\mathcal C(x)|\le\frac{118511}{4320\sqrt3}<16.
+\]
+Two integrations by parts, first on a finite interval and then at
+infinity, give
+\begin{equation}\label{eq:tailidentity}
+\begin{split}
+ \int_T^\infty\frac{R(x)}{x^3}\,dx={}&-\frac\lambda T
+ -\frac{\mathcal P(T)}{T^2}+\frac{\overline{\mathcal P}}{T^2}
+ -\frac{2\mathcal C(T)}{T^3}\\
+ &+6\int_T^\infty\frac{\mathcal C(x)}{x^4}\,dx
+ +\int_T^\infty\frac{Q(x)}{x^3}\,dx.
+\end{split}
+\end{equation}
+The boundary limits and absolute convergence follow from boundedness of
+$F,Q,\mathcal P,\mathcal C$.
+
+At $T=20$, $\mathcal P(T)=37/2$ and $\mathcal C(T)=0$, so
+\begin{equation}\label{eq:tail20}
+ \int_{20}^\infty R(x)x^{-3}\,dx\le-\frac{2689}{48000}.
+\end{equation}
+If $40\mid M$, then $\mathcal P(M)=\mathcal C(M)=0$, and
+\begin{equation}\label{eq:tailM}
+ \int_M^\infty R(x)x^{-3}\,dx
+ \ge-\frac\lambda M+\frac{2923/240-1/4}{M^2}-\frac{32}{M^3}.
+\end{equation}
+The finite integral is
+\begin{equation}\label{eq:innerexact}
+ \int_3^{20}R(x)x^{-3}\,dx
+ =\frac{322437603634266857629}{7535670527041937280000}.
+\end{equation}
+Put
+\begin{align}
+ A_*&=\frac{9928298118277006344769}{7535670527041937280000},
+ \label{eq:Astar}\\
+ A_M&=A_*+\frac{7\lambda}{M}
+              -\frac{2923/240-1/4}{M^2}+\frac{32}{M^3}.
+ \label{eq:AM}
+\end{align}
+Combining Proposition~\ref{prop:primegrowth} with
+\eqref{eq:tail20}--\eqref{eq:innerexact} proves
+\begin{equation}\label{eq:AMbound}
+ \limsup_{\substack{K\to\infty\\40\mid K}}K^{-2}\log m_{K,M}\le A_M
+ \qquad(M\in40\Z_{>0}).
+\end{equation}
+\gid{Zeta5.normalization_quadratic_bound}
+
+\section{The real determinant estimate}
+\label{sec:real}
+Define the external field on $[0,\infty)$ by
+\begin{equation}\label{eq:Vdef}
+ V(t)=2\pi\sqrt t+\int_0^1\log(t+u^2)\,du
+                         -6\int_0^\alpha\log(t+u^2)\,du.
+\end{equation}
+The integrals at $t=0$ are interpreted as their convergent improper
+integrals. For a finite measure $\rho$, write
+\[
+ U^\rho(t)=\int\log|t-u|\,d\rho(u),\qquad
+ I(\rho)=\iint\log|t-u|\,d\rho(t)\,d\rho(u),
+\]
+whenever the integrals are absolutely convergent. The same notation is
+used on $\C$.
+
+\begin{proposition}[Explicit comparison measure; source Lemma 6.1]
+\label{prop:comparison}
+There is a positive measure $\rho$ of mass $\lambda$, supported in
+$(0,2)$ and equal to the sum of the sixteen rationally specified arcsine
+measures in Appendix~\ref{app:measure}, such that
+\begin{equation}\label{eq:potentialbound}
+ 2U^\rho(t)-V(t)\le M_0:=-\frac{1329}{200}\qquad(t\ge0).
+\end{equation}
+Every supporting interval has length greater than $1/225$. With
+\begin{align}
+ C_*&=-2\lambda+12\alpha\lambda(1-\log\alpha)
+                  +3\lambda^2-2\lambda^2\log(2\lambda),\label{eq:Cstar}\\
+ U&=-\frac{2733991}{2000000},\label{eq:Uconstant}
+\end{align}
+one has
+\begin{equation}\label{eq:energyconstant}
+ \lambda M_0-I(\rho)+C_*<U.
+\end{equation}
+\gid{Zeta5.comparison_measure_certificate}
+\end{proposition}
+\begin{proof}
+See Appendix~\ref{app:measure}. The proof uses a finite rational
+partition with outward bounds for elementary functions. The independent
+checker supplied with this edition verifies all its cells and constants.
+This proposition uses only a comparison measure, not a solution or an
+existence theorem for the equilibrium-measure problem.
+\end{proof}
+
+\subsection{Zero-mass energy with explicit integrability}
+\begin{lemma}[Zero-mass logarithmic energy; source Lemma 6.2]
+\label{lem:zeroenergy}
+Let $\nu$ be a finite real signed Borel measure on $\C$ with compact
+support, $\nu(\C)=0$, and
+\[
+ \iint|\log|z-w||\,d|\nu|(z)\,d|\nu|(w)<\infty.
+\]
+Here the absolute logarithmic kernel is assigned the value $+\infty$ on
+the diagonal $z=w$. In the signed real integral, use any representative
+on the resulting null diagonal. Then $I(\nu)\le0$.
+\gid{Zeta5.Analysis.zero_mass_logarithmic_energy}
+\end{lemma}
+\begin{proof}
+For $s>0$, completing the square gives
+\[
+ e^{-s|z-w|^2}=\frac{4s}{\pi}\int_\C
+          e^{-2s|z-u|^2}e^{-2s|w-u|^2}\,dA(u),
+\]
+where $A$ is planar Lebesgue measure. Thus
+\[
+ J(s):=\iint e^{-s|z-w|^2}\,d\nu(z)\,d\nu(w)
+ =\frac{4s}{\pi}\int_\C
+       \left(\int e^{-2s|z-u|^2}\,d\nu(z)\right)^2dA(u)\ge0.
+\]
+Fubini is justified by first integrating the nonnegative kernel against
+$|\nu|\otimes|\nu|\otimes A$; the completed-square identity bounds that
+integral by a constant times $|\nu|(\C)^2$.
+
+For $0<a<b$ and $r>0$, put
+\[
+ L_{a,b}(r)=\frac12\int_a^b\frac{e^{-s}-e^{-sr^2}}s\,ds.
+\]
+The identity
+$\frac12\int_0^\infty(e^{-s}-e^{-sr^2})s^{-1}\,ds=\log r$
+follows by writing the numerator as $\int_1^{r^2}s e^{-sv}\,dv$ and
+integrating. The integrand has a fixed sign for fixed $r$, so
+$|L_{a,b}(r)|\le|\log r|$ and $L_{a,b}(r)\to\log r$ as
+$a\downarrow0$, $b\uparrow\infty$. Since $\nu$ has mass zero,
+\[
+ \iint L_{a,b}(|z-w|)\,d\nu(z)\,d\nu(w)
+       =-\frac12\int_a^bJ(s)s^{-1}\,ds\le0.
+\]
+The absolute logarithmic-integrability hypothesis implies that the
+diagonal has zero $|\nu|\otimes|\nu|$ measure. Dominated convergence
+therefore applies off that null set and proves the conclusion.
+\end{proof}
+
+\begin{lemma}[Circle regularization and arcsine error]
+\label{lem:regularization}
+For $t_1,\ldots,t_h\ge0$ and $\varepsilon>0$, let $\omega_i$ be
+normalized arclength on the circle of radius $\varepsilon$ centered at
+$t_i$, and set $\sigma=K^{-1}\sum_{i=1}^h\omega_i$. Then
+\begin{equation}\label{eq:configuration}
+\begin{split}
+ 2\sum_{i<j}\log|t_i-t_j|-K\sum_iV(t_i)
+ \le{}&(\lambda M_0-I(\rho))K^2\\
+ &+120\lambda K^2\sqrt\varepsilon-h\log\varepsilon.
+\end{split}
+\end{equation}
+Coincident points are allowed by assigning $-\infty$ to the left side.
+\gid{Zeta5.Analysis.regularized_configuration_bound}
+\end{lemma}
+\begin{proof}
+The circle-average identity is
+\[
+ \int\log|z-u|\,d\omega_i(z)=\log\max(|t_i-u|,\varepsilon).

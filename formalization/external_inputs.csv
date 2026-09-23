@@ -1,0 +1,9 @@
+input_id,mathematical_interface,formal_status,scope
+EXT_BERNOULLI,"Convention B1=-1/2; Bernoulli reflection/difference/multiplication; odd vanishing",pending,main
+EXT_VON_STAUDT,"p-adic denominator bound and integrality away from p-1 dividing positive even index",pending,main
+EXT_EULER_ZETA,"Euler's even-zeta formula at every positive even integer",pending,main
+EXT_HERMITE,"Hurwitz-zeta Hermite integral at s=5 and a>0 including convergence and integer-shift identity",pending,main
+EXT_PNT,"theta(T)/T tends to 1 as T tends to positive infinity",pending,main
+EXT_COMPLETE_FIELDS,"Complete p-adic coefficient space and bounded restricted-series operations",pending,main
+EXT_REAL_ANALYSIS,"Exact measure/integral/change-of-variable and elementary-function lemmas enumerated in Appendix D",pending,main
+EXT_LEGENDRE,"Legendre orthogonality/parity/exterior Laplace bound with normalization 2/(2j+1)",pending,optional_approximation

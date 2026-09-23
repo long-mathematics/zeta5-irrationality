@@ -1,0 +1,300 @@
+hypotheses. Formula \eqref{eq:mumom} gives $v_p(\mu(t^e))\ge-1$.
+It gives integrality for $e<2p-3$: the only possible positive multiples
+of $p-1$ among $2e+2$ are the first three, whose denominators are
+cancelled respectively by $2e+3$, $2e+4$, and $2e+5$.
+
+Choose $c_e\in\Zp$ with $c_e\equiv p\mu(t^e)\pmod p$, choosing $c_e=0$
+for $e<2p-3$. Define $\mu_0(t^e)=\mu(t^e)-c_e/p$ and leave all the
+simple-pole values unchanged. This gives a matrix decomposition
+\begin{equation}\label{eq:rankdecomp}
+ G_K=A+p^{-1}L,\qquad L\in M_h(\Zp),\qquad
+ \rank_{\Qp}L\le r_p:=\max(0,K+4N-2p+2).
+\end{equation}
+Indeed, the polynomial quotient of $W(t)t^{i+j}/\tailD(t)$ has degree
+at most $i+j+6N-K$. Therefore $L_{ij}=0$ if
+$i+j<K-6N+2p-3$. If $r_p=0$, all entries vanish. Otherwise
+$h-r_p=2p-5N-2\ge0$; every row with $i<h-r_p$ vanishes, as does every
+such column. This proves rank over the field, not merely rank modulo $p$.
+Polynomial division is by a monic integral polynomial, so the entries of
+$L$ are integral before and after a unimodular basis change.
+
+For an ordinary square class $a\in\{1,\ldots,(p-1)/2\}$, let
+$\ell=\ell_K(a)$ and $\delta=\boldsymbol1_{a\le N}$. There are
+$\ell-\delta$ remaining poles in that class. Let $Q_a$ be the product of
+their factors, $P_a=\tailD/Q_a$, and $E_a$ the product of the factors
+corresponding to $j>p$ in that class. There are exactly $\ell-2$ such
+factors. Use the rows $P_aq_{a,i}$, where
+\begin{equation}\label{eq:outerbasis}
+ q_{a,i}(t)=
+ \begin{cases}
+ (t+a^2)^i,&0\le i<\ell-2,\\
+ E_a(t)(t+a^2)^{i-(\ell-2)},&\ell-2\le i<\ell-\delta.
+ \end{cases}
+\end{equation}
+For the zero class use $P_0$ times $1$, or $1,t+p^2$, according as the
+remaining poles are $p$, or $p,2p$. Within each class the local
+polynomials are monic of successive degrees. Distinct class resultants
+are units, so Chinese remainders again give a unimodular basis.
+
+Cross-class entries for $A$ are integral: their rational inputs cancel
+to polynomials with integral coefficients, and all moments of $\mu_0$
+are integral. Within an ordinary class, if either row index is at least
+$\ell-2$, all poles with $j>p$ cancel. At most the poles $a,p-a$ remain.
+Both values in \eqref{eq:mupole} are integral and congruent modulo $p$.
+For their constant coefficients use
+\[
+ \Hfive{p-a}\equiv\Hfive{a-1}\pmod p,
+\]
+which follows by reflecting the finite harmonic sum and using
+$\sum_{v=1}^{p-1}v^{-5}=0$ in $\mathbb F_p$ for $p\ge7$.
+The terms $1/(2a)$ and $1/(2(p-a))$, together with the harmonic increment
+$a^{-5}$, give exactly the required congruence. The coefficients of $X$
+are also congruent since $a^4\equiv(p-a)^4$.
+
+For precision, if two nodes $u,v$ satisfy $v_p(u-v)=1$ and integral
+affine values $M_u,M_v$ are congruent coefficientwise modulo $p$, then
+\[
+ \frac{B(u)M_u-B(v)M_v}{u-v}\in\Zp[X]\qquad(B\in\Zp[t]).
+\]
+This is the divided-difference step being used. When only one pole
+remains it is simpler. The condition $p^2>2K$ ensures that distinct
+ordinary nodes within a class differ with valuation exactly one.
+
+For two indices $i,j<\ell-2$, each residue has valuation at least
+\[
+ i+j+6\delta-\ell-4.
+\]
+The row factors supply $i+j$, $W=D_N^5$ supplies $5\delta$, the node
+derivative loses $\ell-\delta-1$, and a harmonic value loses at most
+$5$. The polynomial contribution to $A$ is integral. Hence valid
+\emph{nonpositive} half-integer weights are
+\begin{equation}\label{eq:outerweights}
+ w_{a,i}=\begin{cases}
+ \min(0,i+3\delta-(\ell+4)/2),&i<\ell-2,\\
+ 0,&i\ge\ell-2.
+ \end{cases}
+\end{equation}
+If $\delta=1$, every early weight is obtained by truncating one of the
+half-integers $i-(\ell-2)/2$. For two early rows the sum of the truncated
+weights is at most both zero and the displayed residue bound, as
+required. For an early and a late row, integrality of the whole entry
+suffices.
+
+A single zero-class pole has weight $-1/2$. With two zero-class poles the
+entry bounds for the rows $1,t+p^2$ are $-3,-1,0$, so $(-2,0)$ are valid
+weights. We retain these source weights: replacing $-2$ by $-3/2$ would
+improve a bound, but such an optimization is not part of this edition.
+
+\begin{lemma}[Rank correction; source Lemma 4.2]
+\label{lem:rankcorrection}
+Let $A,L$ be $h\times h$ matrices over a discretely valued field, or let
+$A$ have polynomial entries equipped with the Gauss valuation. Suppose
+$v(A_{ij})\ge w_i+w_j$, where every $w_i$ is a nonpositive half-integer.
+If $L$ is integral of rank at most $r$, and exactly $z$ weights are zero,
+then
+\begin{equation}\label{eq:rankcorrection}
+ v\det(A+p^{-1}L)\ge2\sum_iw_i-\min(r,z).
+\end{equation}
+\gid{Zeta5.rank_correction_bound}
+\end{lemma}
+\begin{proof}
+Expand by complementary minors. A term using a $k\times k$ minor of
+$L$, on row set $I$ and column set $J$, has valuation at least
+\[
+ 2\sum_iw_i-k-\sum_{i\in I}w_i-\sum_{j\in J}w_j.
+\]
+If $k>r$ the minor vanishes. Order the weights
+$w_{(1)}\ge\cdots\ge w_{(h)}$. The possible loss is at most
+\[
+ \max_{0\le k\le\min(r,h)}\left(k+2\sum_{i=1}^kw_{(i)}\right).
+\]
+This increases by one while $w_{(i)}=0$ and has nonpositive increments
+thereafter, because a negative half-integer is at most $-1/2$. Its
+maximum is $\min(r,z)$. The argument uses only valuations and finite
+minors, so applies to the Gauss valuation as well.
+\end{proof}
+
+\subsection{Exact outer counts and large primes}
+Let
+\[
+ v=K-p\floor{K/p},\qquad u=\max(0,N+v-p+1),\qquad
+ t_p=\min(N,v)+u.
+\]
+Define
+\begin{equation}\label{eq:gammaout}
+\begin{split}
+ \gamma_p^{\mathrm{out}}=
+ \begin{cases}
+ -7(K-p)+6t_p-1-\min(r_p,p-1-N+u),&K<2p,\\
+ -7(K-p)+3+12N+5t_p-\min(r_p,p+u),&K\ge2p.
+ \end{cases}
+\end{split}
+\end{equation}
+Here are the finite counts behind this formula. For a removed class
+($\delta=1$), \eqref{eq:outerweights} gives
+\begin{center}
+\begin{tabular}{c|rrrrr}
+$\ell$ & 2&3&4&5&6\\\hline
+$-2\sum_iw_{a,i}$ &0&1&2&4&6\\
+$\#\{i:w_{a,i}=0\}$ &1&1&2&2&3
+\end{tabular}
+\end{center}
+An unremoved class has cost $7(\ell-2)$ and two zero weights. A
+zero class with one pole has cost $1$ and no zero weight; with two poles
+it has cost $4$ and one zero weight.
+
+For $K<2p$, an ordinary class has $\ell=2+e$, with
+$e=\boldsymbol1_{a\le v}+\boldsymbol1_{a\ge p-v}$. In the removed classes
+$\sum e=t_p$, and the number with $e=2$ is $u$. Their cost saves $6e$
+relative to the unremoved formula. The total cost is
+$7(K-p)-6t_p+1$, and the total number of zero weights is $p-1-N+u$.
+For $K\ge2p$, the same description is $\ell=4+e$. Each removed class
+saves $12+5e$, the number with $e=2$ is again $u$, and the total cost
+and zero count are $7(K-p)-3-12N-5t_p$ and $p+u$. This proves the
+formula before the rank correction, and
+Lemma~\ref{lem:rankcorrection} adds its displayed minimum.
+
+\begin{proposition}[Outer valuation; source Proposition 4.3]
+\label{prop:outer}
+Under \eqref{eq:outerhyp},
+$v_p^{\mathrm G}(\Delta_K)\ge\gamma_p^{\mathrm{out}}$.
+For the parameters \eqref{eq:parameters}, if $p>K$, then
+$v_p^{\mathrm G}(\Delta_K)\ge0$.
+\gid{Zeta5.outer_determinant_valuation}
+\end{proposition}
+\begin{proof}
+The first statement is \eqref{eq:rankdecomp}, the class basis,
+\eqref{eq:outerweights}, the exact counts, and
+Lemma~\ref{lem:rankcorrection}. All rank and integrality properties of
+$L$ survive the basis change.
+
+For $p>K$, all integer pole labels are below $p$. Each ordinary square
+class has at most two poles, and there is no zero-class pole. Use
+Chinese remainders for these class factors, with local monic rows of
+successive degrees. The same congruence and divided-difference argument
+makes the pole contributions integral. The maximum degree of a
+polynomial quotient is $K+4N-2<2p-3$, so all its moments are integral
+and the correction $L$ vanishes. The transformed matrix is therefore
+integral, and its basis change is unimodular.
+\end{proof}
+
+\section{Normalization and the prime sum}
+\label{sec:normalization}
+For $p>K$ put $\gamma_p^{\mathrm{out}}=0$. For admissible $K,M$, define
+\begin{equation}\label{eq:Lp}
+ L_p(K,M)=\begin{cases}
+ -6h\ell_p(5K)-h v_p(24),&pM\le K,\\
+ v_p(S_K)+\gamma_p^{\mathrm{in}},&pM>K,\ 3p\le K,\\
+ v_p(S_K)+\gamma_p^{\mathrm{out}},&3p>K.
+ \end{cases}
+\end{equation}
+The cases are disjoint and exhaustive because $M\ge40$. Set
+\begin{equation}\label{eq:mdef}
+ m_{K,M}=\prod_{p\le2h}p^{-L_p(K,M)}\in\Q_{>0}.
+\end{equation}
+Negative and positive exponents are both retained. In particular this
+is not merely a denominator-clearing product with negative bounds
+truncated at zero. Legendre's formula supplies the exact exponents
+\begin{equation}\label{eq:scalarvaluation}
+\begin{split}
+ v_p(S_K)={}&2h\sum_{a\ge1}\floor{K/p^a}
+ -12h\sum_{a\ge1}\floor{N/p^a}\\
+ &-2\sum_{i=1}^{h-1}\sum_{a\ge1}\floor{2i/p^a}
+ +(h-1)v_p(4).
+\end{split}
+\end{equation}
+All sums here are finite after their zero terms are removed.
+
+\begin{proposition}[Integrality; source Proposition 5.1]
+\label{prop:integrality}
+For every admissible $K,M$, $Q_{K,M}=m_{K,M}F_K$ belongs to $\Z[X]$.
+\gid{Zeta5.normalized_polynomial_integral}
+\end{proposition}
+\begin{proof}
+For $p\le2h$, \eqref{eq:Fsmall}, Proposition~\ref{prop:inner}, and
+Proposition~\ref{prop:outer} give $v_p^{\mathrm G}(F_K)\ge L_p(K,M)$.
+Equation~\eqref{eq:mdef} therefore makes every coefficient integral at
+these primes. For $p>2h$, all factorials in $S_K$ are units and $p>K$,
+so $\Delta_K$ is integral by Proposition~\ref{prop:outer}. A rational
+number integral at every prime is an integer: a prime divisor of its
+reduced denominator would otherwise give a negative valuation. Apply
+this observation to every coefficient.
+\end{proof}
+
+\subsection{The inner limiting functions}
+For $x\ge3$ and $0<z<1/2$, put
+\[
+ \ell(x,z)=\floor{x-z}+\floor{x+z}+1,\qquad b(x,z)=3\ell(\alpha x,z).
+\]
+Let
+\[
+ T=\floor{2Hx},\quad s=Hx-T/2,\quad q=\floor{2x},\quad n_+=(2x-q)/2,
+\]
+and define
+\begin{align}
+ \Gamma(x)&=\int_0^{1/2}(T-b)(T+b-\ell-5)\,dz
+           +s(2T-q-5)+(s-n_+)_+,\label{eq:Gamma}\\
+ J(u)&=m u-\frac{m(m+1)}4,\qquad m=\floor{2u},\label{eq:J}\\
+ \mathcal N(x)&=2\lambda x\floor{x}-12\lambda x\floor{\alpha x}
+                   -2J(\lambda x),\label{eq:Nlimit}\\
+ R(x)&=-\Gamma(x)-\mathcal N(x).\label{eq:Rlimit}
+\end{align}
+In \eqref{eq:Gamma}, $b=b(x,z)$ and $\ell=\ell(x,z)$. These functions
+are bounded and piecewise polynomial on every compact subinterval of
+$[3,\infty)$.
+
+\begin{lemma}[Uniform discrete-to-continuous inner estimate; source (5.7)]
+\label{lem:innerlimit}
+For each fixed $M\ge40$ there is a constant $C_M$ such that, for every
+admissible $K$ and every inner prime,
+\[
+ |\gamma_p^{\mathrm{in}}-p\Gamma(K/p)|\le C_M,\qquad
+ |v_p(S_K)-p\mathcal N(K/p)|\le C_M.
+\]
+\gid{Zeta5.inner_uniform_limit}
+\end{lemma}
+\begin{proof}
+The finite counts satisfy
+$\ell_A(a)=\ell(A/p,a/p)$. On $3\le x\le M$ the breakpoints in $z$ of
+$\ell(x,z)$ and $\ell(\alpha x,z)$ form a uniformly bounded finite set.
+The number of grid points $a/p$ in an interval differs from $p$ times
+its length by at most two. All counts, dimensions, and weights involved
+are bounded by constants depending only on $M$.
+
+The contribution of an ordinary class of dimension $L$ and parameters
+$b,\ell$ to twice the sum of its weights is
+$L(L+2b-\ell-5)$. At the baseline $L=T-b$ this is the integrand of
+\eqref{eq:Gamma}. Adding one row changes it by $2T-\ell-4$.
+The counts $\ell$ are $q$ or $q+1$, and the set with the larger count
+has measure $n_+$. Thus allocating the $s p$ extra rows to the larger
+counts first gives, after division by $p$,
+$s(2T-q-5)+(s-n_+)_+$.
+
+Rounding the grid counts changes the available numbers in each category
+by $O_M(1)$. The reserved zero block, replacing $p/2$ by $(p-1)/2$, and
+the $3m_N$ term in \eqref{eq:allocation} change the ordinary row budget
+by $O_M(1)$. A change of one allocated row costs $O_M(1)$, so their total
+effect is $O_M(1)$; the zero block itself has that size as well. This
+argument remains uniform at an integer crossing of $2Hx$: giving one
+extra row to every ordinary class is exactly the next baseline
+allocation. It does not require a separation of $2Hx$ from the integers.
+There are finitely many count categories and bounded ranges of all these
+parameters for fixed $M$, so the indicated bounds give a single $C_M$.
+
+For the scalar, $p^2>5K$ removes all higher prime powers from
+\eqref{eq:scalarvaluation}, and $p\ge7$ removes the $4$ term. Counting
+$\floor{2i/p}$ by its level sets gives
+\[
+ \sum_{i=1}^{h-1}\floor{2i/p}=pJ(h/p)+O_M(1).
+\]
+For example, each nonempty level set has cardinality
+$h-jp/2+O(1)$, and there are at most $2h/p=O(M)$ levels. Substitution
+in \eqref{eq:scalarvaluation} proves the second assertion.
+\end{proof}
+
+\subsection{The outer limiting functions, with explicit indicator scope}
+Use $y=p/K$. Define
+\begin{equation}\label{eq:R0outer}
+ R_0(y)=\begin{cases}
+ 8-9y-8\alpha-5\min(\alpha,1-2y)-5(1+\alpha-3y)_+,
+                                    &1/3<y<1/2,\\

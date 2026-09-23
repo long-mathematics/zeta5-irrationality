@@ -1,0 +1,50 @@
+declaration,planned_module,kind,source_reference,formal_status,evidence_status,depends_on,stage,needed_for_main
+Zeta5.FK,Zeta5/Construction/Definitions.lean,definition,Equation (2.5),pending,expanded_mathematical_draft,Zeta5.deltaK;Zeta5.scalarSK,1,true
+Zeta5.GK,Zeta5/Construction/Definitions.lean,definition,Equation (2.4),pending,expanded_mathematical_draft,Zeta5.muX;Zeta5.parameters,1,true
+Zeta5.QKM,Zeta5/Arithmetic/Normalization.lean,definition,Equation (2.6),pending,expanded_mathematical_draft,Zeta5.normalizationFactor;Zeta5.FK,1,true
+Zeta5.deltaK,Zeta5/Construction/Definitions.lean,definition,Equation (2.4),pending,expanded_mathematical_draft,Zeta5.GK,1,true
+Zeta5.determinant_degree,Zeta5/Construction/Degree.lean,proposition,Equation (2.9),pending,expanded_mathematical_draft,Zeta5.GK;Zeta5.deltaK,1,true
+Zeta5.irrational_of_inputs,Zeta5/Main/Conditional.lean,conditional_theorem,Conditional bridge specified in Appendix D,pending,expanded_mathematical_draft,Zeta5.irrational_of_integer_polynomials;Zeta5.QKM;Zeta5.zetaFive,1,true
+Zeta5.irrational_of_integer_polynomials,Zeta5/Main/IntegerPolynomialCriterion.lean,lemma,"Introduction, final integer contradiction",pending,expanded_mathematical_draft,,1,true
+Zeta5.muX,Zeta5/Construction/Functional.lean,definition,Equations (2.2)-(2.3),pending,expanded_mathematical_draft,,1,true
+Zeta5.normalizationFactor,Zeta5/Arithmetic/Normalization.lean,definition,Equations (5.1)-(5.3),pending,expanded_mathematical_draft,Zeta5.parameters;Zeta5.scalarSK,1,true
+Zeta5.parameters,Zeta5/Construction/Definitions.lean,definition,Equation (2.1),pending,expanded_mathematical_draft,,1,true
+Zeta5.scalarSK,Zeta5/Construction/Definitions.lean,definition,Equation (2.5),pending,expanded_mathematical_draft,Zeta5.parameters,1,true
+Zeta5.zetaFive,Zeta5/Construction/Definitions.lean,definition,Series definition; Appendix D,pending,expanded_mathematical_draft,,1,true
+Zeta5.zetaFive_eq_riemannZeta,Zeta5/Construction/ZetaBridge.lean,theorem,Bridge specified in Appendix D,pending,expanded_mathematical_draft,Zeta5.zetaFive,1,true
+Zeta5.Certificate.energy_and_norm_constants,Zeta5/Certificate/Constants.lean,certificate,Appendix A.4,pending,exact_python_certificate_pass,Zeta5.Certificate.interval_soundness,2,true
+Zeta5.Certificate.final_rational_margins,Zeta5/Certificate/Margins.lean,certificate,Appendix B.3,pending,exact_python_certificate_pass,Zeta5.Certificate.inner_integral;Zeta5.Certificate.outer_integral,2,true
+Zeta5.Certificate.inner_integral,Zeta5/Certificate/InnerIntegral.lean,certificate,Appendix B.1; Table 3,pending,exact_python_certificate_pass,,2,true
+Zeta5.Certificate.interval_soundness,Zeta5/Certificate/Interval.lean,lemma,Expanded Appendix A.2,pending,expanded_mathematical_draft,,2,true
+Zeta5.Certificate.outer_integral,Zeta5/Certificate/OuterIntegral.lean,certificate,Appendix B.2; Table 4,pending,exact_python_certificate_pass,,2,true
+Zeta5.Certificate.potential_cells,Zeta5/Certificate/Potential.lean,certificate,Appendix A.3; Tables 1-2,pending,exact_python_certificate_pass,Zeta5.Certificate.interval_soundness,2,true
+Zeta5.Local.bounded_division,Zeta5/Local/RestrictedSeries.lean,lemma,Expanded Lemma 3.1,pending,expanded_mathematical_draft,,3,true
+Zeta5.Local.completed_translation_reflection,Zeta5/Local/PrincipalParts.lean,lemma,"Equations (3.2)-(3.3), completed domain",pending,expanded_mathematical_draft,Zeta5.Local.far_pole_compatibility,3,true
+Zeta5.Local.distribution,Zeta5/Local/Distribution.lean,proposition,Lemma 3.2,pending,expanded_mathematical_draft,Zeta5.Local.completed_translation_reflection;Zeta5.Local.distribution_parameter_integral,3,true
+Zeta5.Local.distribution_parameter_integral,Zeta5/Local/Distribution.lean,lemma,"Equation (3.6), C_p valuation",pending,expanded_mathematical_draft,Zeta5.Local.far_pole_compatibility,3,true
+Zeta5.Local.far_pole_compatibility,Zeta5/Local/PrincipalParts.lean,lemma,Equation (3.5); expanded mixed-domain argument,pending,expanded_mathematical_draft,Zeta5.Local.bounded_division,3,true
+Zeta5.Local.integer_valued_estimates,Zeta5/Local/IntegerValued.lean,lemma,Equations (3.8)-(3.9),pending,expanded_mathematical_draft,,3,true
+Zeta5.Local.integral_extension,Zeta5/Local/RestrictedSeries.lean,proposition,Lemma 3.1,pending,expanded_mathematical_draft,Zeta5.Local.bounded_division,3,true
+Zeta5.Local.small_prime_functional_bound,Zeta5/Local/SmallPrimes.lean,proposition,Lemma 3.3,pending,expanded_mathematical_draft,Zeta5.Local.integer_valued_estimates,4,true
+Zeta5.inner_determinant_valuation,Zeta5/Local/InnerDeterminant.lean,proposition,Proposition 4.1,pending,expanded_mathematical_draft,Zeta5.Local.integral_extension;Zeta5.Local.distribution;Zeta5.deltaK,4,true
+Zeta5.normalized_polynomial_integral,Zeta5/Arithmetic/Normalization.lean,proposition,Proposition 5.1,pending,expanded_mathematical_draft,Zeta5.small_prime_determinant_bound;Zeta5.inner_determinant_valuation;Zeta5.outer_determinant_valuation;Zeta5.QKM,4,true
+Zeta5.outer_determinant_valuation,Zeta5/Local/OuterDeterminant.lean,proposition,Proposition 4.3,pending,expanded_mathematical_draft,Zeta5.rank_correction_bound;Zeta5.deltaK;Zeta5.muX,4,true
+Zeta5.rank_correction_bound,Zeta5/Local/RankCorrection.lean,lemma,Lemma 4.2,pending,expanded_mathematical_draft,,4,true
+Zeta5.small_prime_determinant_bound,Zeta5/Local/SmallPrimes.lean,theorem,Equation (3.12),pending,expanded_mathematical_draft,Zeta5.Local.small_prime_functional_bound;Zeta5.FK,4,true
+Zeta5.inner_uniform_limit,Zeta5/Arithmetic/InnerLimit.lean,lemma,Equation (5.7),pending,expanded_mathematical_draft,Zeta5.inner_determinant_valuation,5,true
+Zeta5.normalization_growth,Zeta5/Arithmetic/PrimeSum.lean,proposition,Proposition 5.2,pending,expanded_mathematical_draft,Zeta5.inner_uniform_limit;Zeta5.outer_determinant_valuation;Zeta5.weighted_prime_sum;Zeta5.normalizationFactor;Zeta5.Certificate.outer_integral,5,true
+Zeta5.normalization_quadratic_bound,Zeta5/Arithmetic/PeriodicTail.lean,theorem,Equations (5.12)-(5.21),pending,expanded_mathematical_draft,Zeta5.normalization_growth;Zeta5.Certificate.inner_integral;Zeta5.Certificate.outer_integral,5,true
+Zeta5.weighted_prime_sum,Zeta5/Arithmetic/PrimeSum.lean,lemma,PNT step in Proposition 5.2,pending,expanded_mathematical_draft,,5,true
+Zeta5.Analysis.confined_configuration_bound,Zeta5/Analysis/Regularization.lean,lemma,Equations (6.7)-(6.9),pending,expanded_mathematical_draft,Zeta5.Analysis.regularized_configuration_bound,6,true
+Zeta5.Analysis.gram_determinant_integral,Zeta5/Analysis/GramIntegral.lean,theorem,Equation (6.10),pending,expanded_mathematical_draft,Zeta5.positive_moment_representation,6,true
+Zeta5.Analysis.regularized_configuration_bound,Zeta5/Analysis/Regularization.lean,lemma,Equation (6.6),pending,expanded_mathematical_draft,Zeta5.Analysis.zero_mass_logarithmic_energy;Zeta5.comparison_measure_certificate,6,true
+Zeta5.Analysis.zero_mass_logarithmic_energy,Zeta5/Analysis/LogarithmicEnergy.lean,lemma,Lemma 6.2,pending,expanded_mathematical_draft,,6,true
+Zeta5.comparison_measure_certificate,Zeta5/Analysis/ComparisonMeasure.lean,proposition,Lemma 6.1; Appendix A,pending,expanded_mathematical_draft,Zeta5.Certificate.potential_cells;Zeta5.Certificate.energy_and_norm_constants,6,true
+Zeta5.positive_moment_representation,Zeta5/Analysis/Moments.lean,proposition,Proposition 2.2,pending,expanded_mathematical_draft,Zeta5.muX;Zeta5.GK;Zeta5.zetaFive,6,true
+Zeta5.real_determinant_bound,Zeta5/Analysis/RealBound.lean,proposition,Proposition 6.3,pending,expanded_mathematical_draft,Zeta5.Analysis.confined_configuration_bound;Zeta5.Analysis.gram_determinant_integral;Zeta5.comparison_measure_certificate;Zeta5.scalarSK,6,true
+Zeta5.polynomial_estimates,Zeta5/Main/PolynomialEstimates.lean,theorem,Theorem 2.1,pending,expanded_mathematical_draft,Zeta5.normalized_polynomial_integral;Zeta5.determinant_degree;Zeta5.positive_moment_representation;Zeta5.normalization_quadratic_bound;Zeta5.real_determinant_bound;Zeta5.Certificate.final_rational_margins,7,true
+Zeta5.zeta_five_irrational,Zeta5/Main/Irrationality.lean,theorem,Theorem 1.1,pending,expanded_mathematical_draft,Zeta5.polynomial_estimates;Zeta5.irrational_of_integer_polynomials;Zeta5.zetaFive_eq_riemannZeta,7,true
+Zeta5.Approx.coefficient_height,Zeta5/Approx/Height.lean,theorem,Equation (C.8),pending,expanded_mathematical_draft,Zeta5.Approx.relative_matrix_norm;Zeta5.polynomial_estimates,8,false
+Zeta5.Approx.relative_matrix_norm,Zeta5/Approx/RelativeNorm.lean,proposition,Proposition C.1,pending,expanded_mathematical_draft,Zeta5.positive_moment_representation;Zeta5.determinant_degree;Zeta5.Certificate.energy_and_norm_constants,8,false
+Zeta5.primitive_normalization,Zeta5/Construction/Primitive.lean,theorem,Appendix C.3,pending,expanded_mathematical_draft,Zeta5.normalized_polynomial_integral;Zeta5.positive_moment_representation,8,false
+Zeta5.rational_approximation_260,Zeta5/Approx/RationalApproximation.lean,corollary,Corollary 1.2; Appendix C.2,pending,expanded_mathematical_draft,Zeta5.polynomial_estimates;Zeta5.Approx.relative_matrix_norm;Zeta5.Certificate.final_rational_margins,8,false

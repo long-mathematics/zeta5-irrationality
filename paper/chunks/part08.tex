@@ -1,0 +1,300 @@
+\begin{tabular}{cr}\toprule
+$j$ & $\displaystyle\int_j^{j+1}R(x)x^{-3}\,dx$\\\midrule
+3 & $\frac{26807}{161280}$\\
+4 & $\frac{37383}{704000}$\\
+5 & $\frac{37523}{8236800}$\\
+6 & $-\frac{120923}{6552000}$\\
+7 & $-\frac{10025233}{356428800}$\\
+8 & $-\frac{110029309}{3348864000}$\\
+9 & $-\frac{2278419487}{64465632000}$\\
+10 & $-\frac{282415081}{7724640000}$\\
+11 & $-\frac{3236921227}{87524236800}$\\
+12 & $-\frac{3350220001}{90899827200}$\\
+13 & $\frac{7424224373}{2217983040000}$\\
+14 & $\frac{16775764609}{955086612480}$\\
+15 & $\frac{369043847}{30810528000}$\\
+16 & $\frac{651380108633}{86461373856000}$\\
+17 & $\frac{472851276229}{119820121344000}$\\
+18 & $\frac{4930060867}{4724197793280}$\\
+19 & $-\frac{15199801}{11563552000}$\\
+\bottomrule\end{tabular}
+\end{table}
+
+\subsection{The outer integral}
+Let
+\[
+ T(y)=R_0(y)-d(y)-2\lambda\floor{1/y}+\sum_{j=1}^5(2\lambda-jy)_+.
+\]
+On each open interval of Table~\ref{tab:outerintegrals}, $T(y)=b+cy$.
+Resolving every minimum, positive part, and reciprocal floor by exact
+endpoint comparisons proves those affine expressions. Their integrals
+are $b(r-l)+c(r^2-l^2)/2$, and their sum is
+$I_{\mathrm{out}}=127751/96000$. As before, no assertion about an affine
+branch is inferred from numerical sampling.
+\gid{Zeta5.Certificate.outer_integral}
+\begin{table}[htbp]\centering\small
+\caption{Outer integrand $T(y)=b+cy$ (source Table 4).}\label{tab:outerintegrals}
+\renewcommand{\arraystretch}{1.65}
+\begin{tabular}{rrrr}\toprule
+$l$ & $r$ & $b$ & $c$\\\midrule
+$\frac{1}{3}$ & $\frac{43}{120}$ & $\frac{279}{40}$ & $-9$\\
+$\frac{43}{120}$ & $\frac{37}{100}$ & $\frac{451}{40}$ & $-21$\\
+$\frac{37}{100}$ & $\frac{13}{30}$ & $\frac{377}{40}$ & $-16$\\
+$\frac{13}{30}$ & $\frac{37}{80}$ & $\frac{429}{40}$ & $-19$\\
+$\frac{37}{80}$ & $\frac{1}{2}$ & $\frac{17}{4}$ & $-5$\\
+$\frac{1}{2}$ & $\frac{43}{80}$ & $\frac{51}{10}$ & $-3$\\
+$\frac{43}{80}$ & $\frac{37}{60}$ & $\frac{231}{20}$ & $-15$\\
+$\frac{37}{60}$ & $\frac{13}{20}$ & $\frac{97}{10}$ & $-12$\\
+$\frac{13}{20}$ & $\frac{37}{40}$ & $\frac{42}{5}$ & $-10$\\
+$\frac{37}{40}$ & $1$ & $1$ & $-2$\\
+$1$ & $\frac{37}{20}$ & $\frac{37}{20}$ & $-1$\\
+\bottomrule\end{tabular}
+\end{table}
+
+\subsection{The final rational margins}
+Direct substitution into \eqref{eq:AM} gives
+\begin{align*}
+ A_{200}&=\frac{127125602969131786927559}{94195881588024216000000},\\
+ A_{100000}&=\frac{7756864096839411316755964319057}
+                  {5887242599251513500000000000000}.
+\end{align*}
+With $U=-2733991/2000000$, the exact differences are
+\begin{align}
+ -1600(A_{200}+U)-\frac{139}{5}
+ &=\frac{3089837638249482469}{58872425992515135000}>0,
+ \label{eq:margin200}\\
+ -1600(A_{100000}+U)-\frac{7907}{100}
+ &=\frac{29873543950273155160680943}
+          {3679526624532195937500000000}>0.
+ \label{eq:marginlarge}
+\end{align}
+These imply all strict inequalities used in Section~\ref{sec:finish}.
+In particular $A_{100000}+U<-79/1600$.
+\gid{Zeta5.Certificate.final_rational_margins}
+
+\section{Optional rational approximation and coefficient height}
+\label{app:approx}
+This appendix retains source Appendix C. Its matrix norm bound is not an
+assumption of Theorem~\ref{thm:main}.
+
+\subsection{Relative norm of the coefficient matrix}
+Put
+\[
+ G=G_K(\xi),\qquad M_K=[X]G_K(X),\qquad
+ B_K=G^{-1/2}M_KG^{-1/2}.
+\]
+The square root and inverse are the real symmetric positive-definite
+ones supplied by Proposition~\ref{prop:moments}. Norm means Euclidean
+operator norm.
+
+\begin{proposition}[Relative norm; source Proposition C.1]
+\label{prop:relativenorm}
+For all sufficiently large $K\in40\Z_{>0}$,
+\begin{equation}\label{eq:relativenorm}
+ \|B_K\|\le e^{\varrho K},\qquad\varrho=\frac{6933}{500}.
+\end{equation}
+\gid{Zeta5.Approx.relative_matrix_norm}
+\end{proposition}
+\begin{proof}
+Let $q$ be a real polynomial of degree less than $h$ and put
+$p(t)=q(K^2t)$ and $A_K=K^{12N-2K+6}$. For any $0<a<b$, keep only the
+$\ell=1$ term of the positive weight, restrict $y=K\sqrt t$ to
+$a\le t\le b$, and bound every factor separately. This gives
+\begin{equation}\label{eq:Glower}
+ \boldsymbol q^{\mathsf T}G\boldsymbol q
+ \ge A_Kc_a e^{-F(a,b)K}\int_a^b p(t)^2\,dt,
+\end{equation}
+where
+\[
+ c_a=\frac{(2\pi)^4a^2}{24},\qquad
+ F(a,b)=2\pi\sqrt b+\log(1+b)-6\alpha\log a.
+\]
+The scaled numerator is at least $a^{6N}$, the denominator is at most
+$(1+b)^K$, and the remaining scaled density is at least
+$c_a e^{-2\pi K\sqrt b}$. This proves the bound with its exact power
+of $K$.
+
+Write $u_j=j/K$. The residue expression in
+Proposition~\ref{prop:degree} gives
+\begin{equation}\label{eq:Mresidue}
+ \boldsymbol q^{\mathsf T}M_K\boldsymbol q
+ =A_K\sum_{j=N+1}^K r_jp(-u_j^2)^2,
+ \quad
+ r_j=\frac{u_j^4\prod_{\ell=1}^N(u_\ell^2-u_j^2)^5}
+               {\prod_{N<k\le K,\ k\ne j}(u_k^2-u_j^2)}.
+\end{equation}
+The numerator has absolute value at most one. Since $u_k+u_j\ge2\alpha$,
+\begin{align*}
+ |r_j|&\le
+ \frac{(K/(2\alpha))^{h-1}}{(j-N-1)!(K-j)!}
+ \le\frac{(K/\alpha)^{h-1}}{(h-1)!}\\
+ &\le\exp\{\lambda K(1-\log(\alpha\lambda))\}.
+\end{align*}
+The middle inequality is the bound $\binom{h-1}{j-N-1}\le2^{h-1}$.
+For the last one, use $m!\ge(m/e)^m$ and monotonicity of
+$x\log(eK/(\alpha x))$ for $0<x\le h$.
+
+Map $[a,b]$ to $[-1,1]$ and expand $p$ in the orthogonal Legendre basis.
+For $-1\le t\le0$ the transformed argument has absolute value at most
+\[
+ Y=\frac{2+a+b}{b-a}>1,
+ \qquad R=Y+\sqrt{Y^2-1}.
+\]
+The Laplace integral for the Legendre polynomial gives
+$|P_j(s)|\le R^j$ on this exterior interval (use parity for negative
+$s$). Cauchy--Schwarz and $\sum_{j=0}^{h-1}(2j+1)=h^2$ imply
+\begin{equation}\label{eq:legendreexterior}
+ \max_{-1\le t\le0}|p(t)|^2
+ \le\frac{h^2R^{2h}}{b-a}\int_a^b p(t)^2\,dt.
+\end{equation}
+Combining \eqref{eq:Glower}--\eqref{eq:legendreexterior} and using the
+Rayleigh quotient for the real symmetric matrix $B_K$ gives
+\[
+ \|B_K\|\le\frac{h^3}{c_a(b-a)}e^{\kappa(a,b)K},\qquad
+ \kappa(a,b)=F(a,b)+\lambda(1-\log(\alpha\lambda))+2\lambda\log R.
+\]
+Choose $a=1/18$, $b=1/3$, so $Y=43/5$ and
+\begin{equation}\label{eq:kappaexplicit}
+\begin{split}
+ \kappa={}&\frac{2\pi}{\sqrt3}+\log\frac43+\frac9{20}\log18
+ +\frac{37}{40}\left(1+\log\frac{1600}{111}\right)\\
+ &+\frac{37}{20}\log\frac{43+4\sqrt{114}}5
+ <\frac{6933}{500}.
+\end{split}
+\end{equation}
+The strict margin is certified in \eqref{eq:kappacert}. Since a fixed
+polynomial factor in $h$ is eventually at most
+$e^{(\varrho-\kappa)K}$, it is absorbed by this positive margin. This
+proves \eqref{eq:relativenorm}.
+\end{proof}
+
+\subsection{The approximation contradiction with explicit quantifiers}
+\begin{proof}[Proof of Corollary~\ref{cor:approx}]
+Fix $M=100000$ and write $Q_K=Q_{K,M}$. From
+\eqref{eq:finalasymptotic} and Appendix~\ref{app:arithmetic}, for all
+sufficiently large allowed $K$,
+\[
+ 0<Q_K(\xi)\le e^{-\epsilon K^2},\qquad\epsilon=79/1600.
+\]
+Let $c=75/4$. For an integer $b\ge2$, choose
+\[
+ K=40\left\lceil\frac{c\log b}{40}\right\rceil,
+ \qquad c\log b\le K<c\log b+40.
+\]
+As $b\to\infty$, this $K$ satisfies admissibility and all eventual
+bounds above. Suppose $a\in\Z$ and $\delta=a/b-\xi$ satisfies
+$|\delta|\le b^{-260}$. The exact rational identities
+\[
+ \varrho c-260=-1/80,\qquad\epsilon-\lambda/c=1/24000
+\]
+give
+$|\delta|\|B_K\|\le e^{40\varrho}b^{-1/80}=o(K^{-1})$.
+All eigenvalues of $I+\delta B_K$ are therefore positive for sufficiently
+large $b$, uniformly in $a$, and
+\[
+ 0<\det(I+\delta B_K)
+ \le(1+|\delta|\|B_K\|)^h
+ \le e^{h|\delta|\|B_K\|}\longrightarrow1.
+\]
+It is eventually at most two. Affine dependence on $X$ gives the exact
+identity
+$Q_K(a/b)=Q_K(\xi)\det(I+\delta B_K)$. Integrality and degree $h$ now
+imply that $b^hQ_K(a/b)$ is a positive integer, whereas
+\[
+ b^hQ_K(a/b)\le2\exp(\lambda K\log b-\epsilon K^2)
+              \le2e^{-K^2/24000}<1
+\]
+for every sufficiently large $b$. This contradiction proves the
+corollary with a single threshold $b_0$ independent of $a$.
+\end{proof}
+
+\subsection{Coefficient height and primitive normalization}
+If $H(Q)$ denotes the largest absolute value of an integer coefficient,
+the real eigenvalues $\beta_1,\ldots,\beta_h$ of $B_K$ give
+\[
+ Q_K(X)=Q_K(\xi)\prod_{j=1}^h(1+(X-\xi)\beta_j).
+\]
+Since $\xi<2$, the product of the coefficient $\ell^1$ norms bounds the
+height, and Proposition~\ref{prop:relativenorm} gives
+\begin{equation}\label{eq:height}
+ \log H(Q_K)\le(\lambda\varrho-\epsilon)K^2+o(K^2)
+ =\frac{511067}{40000}K^2+o(K^2)<13K^2
+\end{equation}
+for sufficiently large allowed $K$. For instance, each factor has
+coefficient sum at most $1+3e^{\varrho K}$, which proves the required
+$O(K)$ remainder after multiplication by $h$.
+\gid{Zeta5.Approx.coefficient_height}
+
+For a nonzero $A\in\Q[X]$, let $\cont_{\Q}(A)>0$ be its rational
+content: $A/\cont_{\Q}(A)$ is integral and primitive. Set
+\[
+ P_K=\Delta_K/\cont_{\Q}(\Delta_K).
+\]
+For every admissible $K,M$ there is an integer $a_{K,M}\ge1$ with
+$Q_{K,M}=a_{K,M}P_K$. To see this, a rational multiple of a primitive
+integer polynomial is integral only if the scalar is an integer, by
+B\'ezout applied to its coefficients. Here the scalar is positive.
+Thus $0<P_K(\xi)\le Q_{K,M}(\xi)$, and the established upper bounds
+also hold for the primitive polynomial. The empirical primitive values
+reported in the supplied audits are not needed for this deduction.
+\gid{Zeta5.primitive_normalization}
+
+\section{Autonomous Lean formalization specification}
+\label{app:lean}
+\subsection{The endpoint and the trust boundary}
+The accompanying declaration ledger is an implementation blueprint, not
+a list of already formalized results. At the time of this edition no Lean
+proofs in this package have been checked. The finite Python verification
+has been executed successfully, but it certifies only the displayed
+finite arithmetic and interval enclosures, not the asymptotic or local
+functional theorems.
+
+Use a named real definition
+\[
+ \texttt{zetaFive}:=\sum_{n=0}^{\infty}\frac1{(n+1)^5}
+\]
+with real coercions and a summability proof. The final unconditional
+statement must be \texttt{Irrational zetaFive}, together with a theorem
+identifying it with the intended $\zeta(5)$ value. A theorem about an
+abstract real parameter satisfying the polynomial estimates is the
+useful conditional endpoint, not a substitute for this theorem.
+
+During construction, a structure of named proof inputs is acceptable.
+Its fields must be explicit propositions, not project axioms, and the
+conditional theorem must retain that structure as a visible argument.
+Standard external theorems must likewise be identified by exact type
+and provenance. An unconditional endpoint may be exported only after
+every input has been instantiated by checked proofs or actual imported
+theorems with audited dependencies. No incomplete definition,
+\texttt{sorry}, \texttt{admit}, false premise, or added axiom may silently
+close an obligation.
+
+The final certificate path must be kernel-checkable. An external Python
+program may emit rational witnesses and subdivision data; the theorem
+asserting that they imply the desired inequalities must be proved in
+Lean. Unchecked numerical or native execution is not by itself a proof
+of a certificate. Record any additional computational trust dependency
+rather than hiding it. Inspect \texttt{\#print axioms} for every public
+endpoint and retain the output in the build audit; see the Lean reference
+manual for axiom tracking and validation \cite{LeanValidation}.
+
+\subsection{Minimal mathematical interfaces for external inputs}
+The following interfaces state the mathematical content to be found in
+libraries or proved; they do not guess current declaration names.
+
+\begin{description}[leftmargin=1.3cm,style=nextline]
+\item[Bernoulli arithmetic.]
+$B_1=-1/2$; the polynomial difference, reflection, and multiplication
+identities; $B_{2k+1}=0$ for $k\ge1$; and, for primes $p$ and $m\ge1$,
+$v_p(B_{2m})\ge-1$ with $p$-integrality if $p-1\nmid2m$. The
+von Staudt--Clausen denominator statement is a sufficient interface.
+
+\item[Even zeta and Hermite.]
+Euler's formula at positive even integers, the identification
+$\zeta(5,j)=\xi-\Hfive{j-1}$ for integers $j\ge1$, and, for $a>0$,
+\[
+ \zeta(5,a)=\frac1{2a^5}+\frac1{4a^4}
+ +2\int_0^\infty\frac{\operatorname{Im}(a-iy)^{-5}}
+                          {e^{2\pi y}-1}\,dy,
+\]
+including absolute integrability of the integral. An independently

@@ -1,0 +1,4 @@
+Appendix A: 684 cells PASS; worst B upper = -6.64500268921558832385000
+  energy upper = -2.12659344514705040325360; kappa upper = 13.8658566788652898309526
+Appendix B: 143 symbolic inner pieces, 11 outer pieces PASS
+  inner=322437603634266857629/7535670527041937280000; outer=127751/96000; margins strictly positive
