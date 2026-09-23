@@ -13,8 +13,8 @@ Zeta5.scalarSK,Zeta5/Construction/Definitions.lean,definition,Equation (2.5),def
 Zeta5.zetaFive,Zeta5/Construction/Definitions.lean,definition,Series definition; Appendix D,defined,lean_build_pass,,1,true,,lake build Zeta5.Construction.Definitions
 Zeta5.zetaFive_eq_riemannZeta,Zeta5/Construction/ZetaBridge.lean,theorem,Bridge specified in Appendix D,proved,lean_kernel_checked,Zeta5.zetaFive,1,true,,lake build Zeta5.Construction.ZetaBridge
 Zeta5.Certificate.energy_and_norm_constants,Zeta5/Certificate/Constants.lean,certificate,Appendix A.4,pending,exact_python_certificate_pass,Zeta5.Certificate.interval_soundness,2,true,,
-Zeta5.Certificate.final_rational_margins,Zeta5/Certificate/Margins.lean,certificate,Appendix B.3,proved,lean_kernel_checked,,2,true,Arithmetic theorem is unconditional; inner-integral interpretation remains in its own target; outer integral is proved,lake build Zeta5.Certificate.Margins
-Zeta5.Certificate.inner_integral,Zeta5/Certificate/InnerIntegral.lean,certificate,Appendix B.1; Table 3,pending,exact_python_certificate_pass,,2,true,,
+Zeta5.Certificate.final_rational_margins,Zeta5/Certificate/Margins.lean,certificate,Appendix B.3,proved,lean_kernel_checked,,2,true,Arithmetic theorem is unconditional; inner and outer integral interpretations are separately proved,lake build Zeta5.Certificate.Margins
+Zeta5.Certificate.inner_integral,Zeta5/Certificate/InnerIntegral.lean,certificate,Appendix B.1; Table 3,proved,lean_kernel_checked,,2,true,,lake build Zeta5.Certificate.InnerIntegral
 Zeta5.Certificate.interval_soundness,Zeta5/Certificate/Interval.lean,lemma,Expanded Appendix A.2,pending,expanded_mathematical_draft,,2,true,,
 Zeta5.Certificate.outer_integral,Zeta5/Certificate/OuterIntegral.lean,certificate,Appendix B.2; Table 4,proved,lean_kernel_checked,,2,true,,lake build Zeta5.Certificate.OuterIntegral
 Zeta5.Certificate.potential_cells,Zeta5/Certificate/Potential.lean,certificate,Appendix A.3; Tables 1-2,pending,exact_python_certificate_pass,Zeta5.Certificate.interval_soundness,2,true,,

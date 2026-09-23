@@ -14,17 +14,18 @@ Planned mathematical declarations: **49 total**, of which **45** are required
 for the main irrationality theorem and **4** belong only to the optional
 rational-approximation/height branch.
 
-Current unconditional proved target count: **4 / 49**. In addition, **1**
+Current unconditional proved target count: **5 / 49**. In addition, **1**
 explicitly conditional target is proved and **9** construction definitions
 compile. These categories are reported separately; definitions and the
 conditional endpoint are not proofs of irrationality.
 
-The four unconditional targets are:
+The five unconditional targets are:
 
 - `Zeta5.irrational_of_integer_polynomials`;
 - `Zeta5.zetaFive_eq_riemannZeta`;
 - `Zeta5.Certificate.final_rational_margins`;
-- `Zeta5.Certificate.outer_integral`.
+- `Zeta5.Certificate.outer_integral`;
+- `Zeta5.Certificate.inner_integral`.
 
 The actual `GK`, `deltaK`, `scalarSK`, `FK`, signed `normalizationFactor`, and
 `QKM` are defined. The functional uses polynomial and finite simple-pole
@@ -41,10 +42,18 @@ coefficient formula, remains partial. Helper results do not increase the
 
 The final margins are checked from the unchanged rational constants with
 proof-producing `norm_num`. The outer integral is proved from the actual
-piecewise expression: Lean checks all 11 affine branches, their ordered partition, integrability, and
+piecewise expression: Lean checks all 11 affine branches, their ordered
+partition, integrability, and
 the exact integral sum. Values at partition endpoints are handled through
-null-singleton interval-integral congruence. The inner integral,
-elementary-function interval checker, and potential certificate remain pending.
+null-singleton interval-integral congruence.
+
+The inner integral is proved from the original `Gamma` integral and scalar
+term. Lean checks all 143 branches, including the auxiliary floor-function
+integrals on three strips, then integrates and sums the resulting expressions.
+The script `scripts/generate_inner_branches.py` generates proof scripts;
+its candidate values are checked on the entire open domains by Lean. It is
+not a trusted oracle. The elementary-function interval checker, energy/norm
+constants, and potential certificate remain pending.
 
 ## Latest verification
 
@@ -57,7 +66,7 @@ elementary-function interval checker, and potential certificate remain pending.
   [`formalization/audits/foundations.txt`](formalization/audits/foundations.txt),
   reproducible with `lake env lean formalization/AuditFoundations.lean`.
   Its declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
-  No native-evaluation axiom occurs in the rational-margin or outer-integral proofs.
+  No native-evaluation axiom occurs in the rational-margin or either integral proof.
 - [`formalization/TOOLCHAIN.md`](formalization/TOOLCHAIN.md) records exact
   inspected library interfaces and outstanding library searches.
 
@@ -95,7 +104,7 @@ criteria.
 | Stage | Scope | Targets | Status |
 |---|---|---:|---|
 | 1 | Definitions, determinant degree, generic contradiction, conditional bridge | 13 | 9 definitions; 2 unconditional proofs; 1 conditional proof; exact degree partial |
-| 2 | Kernel-checkable finite certificates | 6 | rational margins and outer integral proved; 4 pending |
+| 2 | Kernel-checkable finite certificates | 6 | rational margins and both integrals proved; 3 pending |
 | 3 | Completed local rational functional and distribution | 7 | pending |
 | 4 | Inner/outer determinant valuation estimates | 6 | pending |
 | 5 | Normalization and prime-sum asymptotics | 4 | pending |

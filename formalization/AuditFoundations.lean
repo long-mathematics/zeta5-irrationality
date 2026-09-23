@@ -18,3 +18,10 @@ import Zeta5
 #print axioms Zeta5.Certificate.outer_integral
 #print axioms Zeta5.Certificate.outer_branches
 #print axioms Zeta5.Certificate.outer_piece_integral
+
+#check Zeta5.Certificate.inner_integral
+#print axioms Zeta5.Certificate.inner_integral
+#print axioms Zeta5.Certificate.inner_branches
+#print axioms Zeta5.Certificate.inner_exact_sum
+#print axioms Zeta5.Certificate.integral_three_strips
+#print axioms Zeta5.Certificate.weighted_affine_integral
