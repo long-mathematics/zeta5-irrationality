@@ -13,3 +13,8 @@ import Zeta5
 #print axioms Zeta5.muX
 #print axioms Zeta5.GK
 #print axioms Zeta5.QKM
+
+#check Zeta5.Certificate.outer_integral
+#print axioms Zeta5.Certificate.outer_integral
+#print axioms Zeta5.Certificate.outer_branches
+#print axioms Zeta5.Certificate.outer_piece_integral
