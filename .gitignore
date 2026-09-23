@@ -1,0 +1,15 @@
+.lake/
+*.olean
+*.ilean
+*.trace
+.DS_Store
+__pycache__/
+*.pyc
+certificates/verification_results.json
+paper/zeta5_formalization_draft.pdf
+paper/*.aux
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
